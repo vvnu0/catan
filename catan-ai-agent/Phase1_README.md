@@ -9,16 +9,32 @@
   - wrapper package structure (`catan_ai`)
   - environment/import verification utilities
   - simulator probe/debug scripts
-  - a minimal custom `DebugPlayer` integration bot
+  - hidden-information-safe adapter layer (`PublicState`, `ActionCodec`, adapter)
+  - custom player implementations (`DebugPlayer`, `HeuristicBot`)
 
 ```mermaid
 flowchart LR
-    A[catan-ai-agent<br/>DebugPlayer / wrappers / probes]
-    B[catanatron<br/>engine + rules + simulator]
-    C[Game state progression]
-    A -->|chooses legal actions| B
-    B -->|applies rules + advances game| C
-    C -->|next state + legal actions| A
+    subgraph AI["catan-ai-agent (this repo)"]
+        direction LR
+        A1["DecisionContext\nadapter + codec + mapping"]
+        A2["PublicState + EncodedAction\nmasked strategy input"]
+        A3["HeuristicBot\ndeterministic scoring"]
+    end
+
+    subgraph ENG["../catanatron (engine repo)"]
+        direction LR
+        E1[Game engine + rules]
+        E2["decide(...) call\ngame + playable_actions"]
+        E3[Apply returned raw action]
+    end
+
+    E1 --> E2
+    E2 --> A1
+    A1 --> A2
+    A2 --> A3
+    A3 -->|choose encoded action| A1
+    A1 -->|map to original raw legal action| E3
+    E3 --> E1
 ```
 
 ## Current project layout
@@ -34,20 +50,32 @@ catan-ai-agent/
 │   ├── cli_smoke.py                    # Environment + catanatron-play availability check
 │   ├── sim_probe.py                    # Tick-by-tick simulator probe (up to 30 ticks)
 │   ├── state_probe.py                  # Raw state/board/player inspection dump
-│   └── run_debug_match.py              # DebugPlayer match and reproducibility smoke checks
+│   ├── public_state_probe.py           # PublicState masked-view inspection
+│   ├── run_debug_match.py              # DebugPlayer match and reproducibility smoke checks
+│   └── run_heuristic_match.py          # HeuristicBot vs baselines
 ├── src/
 │   └── catan_ai/
 │       ├── __init__.py                 # Package entry
+│       ├── adapters/
+│       │   ├── __init__.py             # Adapter exports
+│       │   ├── public_state.py         # PublicState / PublicPlayerSummary / EncodedAction
+│       │   ├── catanatron_adapter.py   # Raw game/state -> PublicState adapter
+│       │   └── action_codec.py         # Stable action encoding + deterministic ordering
 │       ├── players/
 │       │   ├── __init__.py             # Player exports
-│       │   └── debug_player.py         # Minimal custom Catanatron Player subclass
+│       │   ├── debug_player.py         # Minimal custom Catanatron Player subclass
+│       │   ├── decision_context.py     # One-turn encoded->raw action bridge
+│       │   └── heuristic_player.py     # First real strategy bot using PublicState
 │       └── utils/
 │           ├── __init__.py
 │           ├── logging.py              # Small logging helper
 │           └── seeding.py              # Seed helper
 └── tests/
     ├── test_imports.py                 # Import and basic game creation checks
-    └── test_debug_player.py            # DebugPlayer behavior and reproducibility checks
+    ├── test_debug_player.py            # DebugPlayer behavior and reproducibility checks
+    ├── test_public_state.py            # PublicState masking/serializability checks
+    ├── test_action_codec.py            # Action codec determinism checks
+    └── test_heuristic_player.py        # HeuristicBot + decision bridge checks
 ```
 
 ## What has been completed so far
@@ -59,8 +87,27 @@ catan-ai-agent/
 - `scripts/state_probe.py` dumps board/roads/buildings/player state/bank/game flags for inspection.
 - `DebugPlayer` implemented as a real subclass of Catanatron `Player`.
 - `scripts/run_debug_match.py` added to run integration matches and show repeated `decide()` calls.
-- Reproducibility fix implemented: deterministic action sorting before `DebugPlayer` picks an action.
-- Test coverage added for instantiation, legal action return, sorted action choice, reproducibility check, and full-game smoke execution.
+- Reproducibility fix implemented for debug bot (deterministic action sorting before selection).
+- Hidden-information-safe adapter layer implemented:
+  - `PublicState` dataclass
+  - `PublicPlayerSummary` dataclass
+  - `public_state_from_game(game, acting_color)`
+  - strict masking checks in tests
+- Stable action representation implemented:
+  - `ActionCodec.encode(...)`
+  - deterministic ordering via `ActionCodec.sorted_actions(...)`
+- Thin decision bridge implemented:
+  - `DecisionContext` builds `PublicState`
+  - deterministic encoded action list
+  - stable `EncodedAction -> raw playable action` mapping
+- First strategy bot implemented:
+  - `HeuristicBot` scores legal actions from `PublicState` + `EncodedAction` only
+  - deterministic tie-breaks
+  - returns original raw legal action through `DecisionContext`
+- Match runner for strategy bot added:
+  - `HeuristicBot` vs `DebugPlayer`
+  - `HeuristicBot` vs `RandomPlayer`
+- Full suite currently passing (`41` tests).
 
 ## Relationship to ../catanatron
 
@@ -143,12 +190,28 @@ python scripts/state_probe.py
 - **Expected output (high level)**
   - Multiple labeled sections with tile/building/road/player/bank details
 
+### `scripts/public_state_probe.py`
+
+- **What it does**
+  - Advances a game and builds `PublicState` for current acting player.
+  - Pretty-prints the masked view used by future strategy logic.
+  - Explicitly lists intentionally omitted hidden information.
+- **Run**
+
+```bash
+python scripts/public_state_probe.py
+```
+
+- **Expected output (high level)**
+  - Public board/player/action summaries
+  - encoded legal actions
+  - "Intentionally Omitted Information" section
+
 ### `scripts/run_debug_match.py`
 
 - **What it does**
-  - Runs deterministic `DebugPlayer` vs `DebugPlayer` twice with the same seed for reproducibility checking.
-  - Runs `DebugPlayer` vs built-in `RandomPlayer` as a smoke test opponent.
-  - Prints winner, turn count, and `DebugPlayer` call counts.
+  - Runs deterministic `DebugPlayer` integration matches.
+  - Prints winner, turn count, and call counts.
 - **Run**
 
 ```bash
@@ -157,7 +220,21 @@ python scripts/run_debug_match.py
 
 - **Expected output (high level)**
   - Match sections with per-match summary
-  - Explicit reproducibility comparison result for debug-vs-debug
+
+### `scripts/run_heuristic_match.py`
+
+- **What it does**
+  - Runs `HeuristicBot` vs `DebugPlayer`.
+  - Runs `HeuristicBot` vs built-in `RandomPlayer`.
+  - Prints winner, turn count, and call counts.
+- **Run**
+
+```bash
+python scripts/run_heuristic_match.py
+```
+
+- **Expected output (high level)**
+  - Two match sections with summary lines
 
 ## Current tests
 
@@ -172,25 +249,39 @@ python scripts/run_debug_match.py
   - `reset_state` and call counting behavior
   - debug-vs-debug reproducibility (same seed => same turn count)
   - full game smoke run without crashing
+- `tests/test_public_state.py` validates:
+  - `PublicState` can be built from a real game
+  - hidden opponent resource identities do not appear
+  - hidden opponent unplayed dev-card identities do not appear
+  - no hidden deck-order / hidden-VP leaks
+  - `PublicState` structure remains serializable/simple
+- `tests/test_action_codec.py` validates:
+  - action encoding behavior
+  - deterministic ordering across repeated calls
+  - deterministic ordering for fixed-seed equivalent states
+  - encoded-action hashability and decode formatting
+- `tests/test_heuristic_player.py` validates:
+  - `HeuristicBot` instantiation
+  - always returns a legal raw playable action
+  - deterministic for fixed seed
+  - prefers non-`END_TURN` when clearly useful build exists
+  - `DecisionContext` encoded->raw action mapping works
+  - tiny full-game run completes without crashing
 
-## Reproducibility note
+## Architecture boundary note
 
-- Naive "first legal action" selection is order-dependent on engine-produced action list ordering.
-- `DebugPlayer` now sorts legal actions deterministically before selecting.
-- This removed consumer-side nondeterminism from the bot.
-- `DebugPlayer` vs `DebugPlayer` is now reproducible for the same seed.
-- `DebugPlayer` vs `RandomPlayer` remains a smoke test only, not a reproducibility benchmark.
+- Raw Catanatron game/state objects are read only in:
+  - `src/catan_ai/adapters/catanatron_adapter.py`
+  - `src/catan_ai/players/decision_context.py` (thin decision-call bridge)
+- `HeuristicBot` decision logic consumes only:
+  - `PublicState`
+  - `EncodedAction`
+- The final returned action is still one of the original raw `playable_actions` from the current `decide(...)` call.
 
 ## Known limitations
 
 - `DebugPlayer` is intentionally non-strategic (integration-focused only).
-- No hidden-information-safe `PublicState` abstraction exists yet.
-- No heuristic bot, MCTS policy layer, belief model, or learning pipeline in this repo yet.
+- `HeuristicBot` is intentionally simple and transparent, not optimal.
+- No MCTS, belief sampling, or learning pipeline yet.
+- No player-to-player trading strategy logic yet.
 - No dedicated human evaluation workflow/tooling yet.
-
-## Next immediate step
-
-- Implement a `PublicState` representation plus:
-  - adapter layer from Catanatron state -> public-safe view
-  - action codec for stable action representation
-  - explicit hidden-information safety checks
