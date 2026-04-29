@@ -1,0 +1,3 @@
+bot_color,bot_faced,bot_final_vp,bot_role,game_id,human_color,human_final_vp,notes,participant_id,replay_path,seed,skill_group,turns,winner
+BLUE,frequency,10,main,P_DRYRUN_game_01,RED,7,dry-run fixture,P_DRYRUN,,9100,B,120,bot
+RED,mcts,7,reference,P_DRYRUN_game_02,BLUE,10,dry-run fixture,P_DRYRUN,,9101,B,127,human

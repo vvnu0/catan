@@ -1,0 +1,50 @@
+{
+  "none": {
+    "mode": "none",
+    "players_created": 8,
+    "decisions": 1351,
+    "worlds_attempted": 0,
+    "worlds_used": 0,
+    "invalid_samples": 0,
+    "fallbacks": 0,
+    "expected_worlds_per_decision": 0,
+    "rejection_rate": 0.0,
+    "avg_worlds_used_per_decision": 0.0,
+    "active_belief_decisions_estimate": 0.0,
+    "avg_belief_updates_per_player_game": 0.0,
+    "fallback_rate": 0.0,
+    "basic_consistency_ok": true
+  },
+  "frequency": {
+    "mode": "frequency",
+    "players_created": 8,
+    "decisions": 1511,
+    "worlds_attempted": 608,
+    "worlds_used": 608,
+    "invalid_samples": 0,
+    "fallbacks": 0,
+    "expected_worlds_per_decision": 1,
+    "rejection_rate": 0.0,
+    "avg_worlds_used_per_decision": 0.40238252812706815,
+    "active_belief_decisions_estimate": 608.0,
+    "avg_belief_updates_per_player_game": 76.0,
+    "fallback_rate": 0.0,
+    "basic_consistency_ok": true
+  },
+  "particle": {
+    "mode": "particle",
+    "players_created": 8,
+    "decisions": 1222,
+    "worlds_attempted": 2200,
+    "worlds_used": 2200,
+    "invalid_samples": 0,
+    "fallbacks": 0,
+    "expected_worlds_per_decision": 4,
+    "rejection_rate": 0.0,
+    "avg_worlds_used_per_decision": 1.800327332242226,
+    "active_belief_decisions_estimate": 550.0,
+    "avg_belief_updates_per_player_game": 68.75,
+    "fallback_rate": 0.0,
+    "basic_consistency_ok": true
+  }
+}

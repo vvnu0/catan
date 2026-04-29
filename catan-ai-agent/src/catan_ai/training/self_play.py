@@ -13,6 +13,7 @@ import io
 import contextlib
 import hashlib
 import logging
+import random as _random
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -25,6 +26,7 @@ from catanatron.models.player import Player
 from catan_ai.adapters.action_codec import ActionCodec
 from catan_ai.adapters.catanatron_adapter import public_state_from_game
 from catan_ai.adapters.public_state import EncodedAction
+from catan_ai.belief.determinizer import Determinizer
 from catan_ai.models.action_features import action_features, state_features
 from catan_ai.players.decision_context import DecisionContext
 from catan_ai.search.candidate_filter import CandidateFilter
@@ -95,19 +97,7 @@ class _RecordingMCTSPlayer(Player):
         root_ctx = DecisionContext(game, playable_actions, self.color)
         ps = root_ctx.public_state
 
-        mcts = MCTS(
-            root_color=self.color,
-            max_simulations=cfg.max_simulations,
-            max_depth=cfg.max_depth,
-            exploration_c=cfg.exploration_c,
-            candidate_filter=CandidateFilter(
-                top_k_roads=cfg.top_k_roads,
-                top_k_trades=cfg.top_k_trades,
-                top_k_robber=cfg.top_k_robber,
-            ),
-            seed=cfg.seed,
-        )
-        best_ea, stats = mcts.search(game)
+        best_ea, stats = _run_teacher_search(game, self.color, cfg)
 
         # Build normalised visit distribution over *all* root legal actions.
         visit_counts: list[int] = []
@@ -153,10 +143,10 @@ def run_self_play(cfg: SelfPlayConfig) -> Path:
 
     Returns the output directory path.
     """
-    if cfg.teacher_type != "mcts":
+    if cfg.teacher_type not in {"mcts", "frequency"}:
         raise ValueError(
             "Unsupported teacher_type. This phase currently supports only "
-            "teacher_type='mcts' for visit-distribution targets."
+            "teacher_type='mcts' or teacher_type='frequency' for visit-distribution targets."
         )
 
     out = Path(cfg.output_dir)
@@ -223,6 +213,34 @@ def _sample_to_dict(sample: DecisionSample) -> dict:
         "chosen_action": sample.chosen_action,
         "meta": sample.meta,
     }
+
+
+def _run_teacher_search(game: Game, color: Color, cfg: SelfPlayConfig):
+    cfilter = CandidateFilter(
+        top_k_roads=cfg.top_k_roads,
+        top_k_trades=cfg.top_k_trades,
+        top_k_robber=cfg.top_k_robber,
+    )
+    search_game = game
+    if cfg.teacher_type == "frequency":
+        rng = _random.Random(cfg.seed + game.state.num_turns * 997)
+        world = Determinizer(
+            acting_color=color,
+            belief_mode="count_only",
+            enable_devcard_sampling=False,
+        ).sample_world(game, rng)
+        if world is not None:
+            search_game = world
+
+    mcts = MCTS(
+        root_color=color,
+        max_simulations=cfg.max_simulations,
+        max_depth=cfg.max_depth,
+        exploration_c=cfg.exploration_c,
+        candidate_filter=cfilter,
+        seed=cfg.seed,
+    )
+    return mcts.search(search_game)
 
 
 def _write_shards(samples: list[dict], out_dir: Path, shard_size: int) -> None:

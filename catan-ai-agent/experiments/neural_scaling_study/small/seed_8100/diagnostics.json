@@ -1,0 +1,38 @@
+{
+  "self_play_sample_count": 659,
+  "diagnostic_sample_count": 128,
+  "checkpoint_epoch": 2,
+  "checkpoint_metrics": {
+    "train_policy": 1.999595010280609,
+    "train_value": 0.24452133029699324,
+    "val_policy": 2.494557738304138,
+    "val_value": 0.005969351179373916,
+    "val_total": 2.500527089483512
+  },
+  "mean_policy_entropy": 1.9862841037102044,
+  "mean_normalized_policy_entropy": 0.9455731725504666,
+  "flat_policy_fraction": 0.625,
+  "nonflat_policy_fraction": 0.375,
+  "mean_max_policy_probability": 0.3042589839460561,
+  "top1_match_rate": 0.453125,
+  "value_mae": 0.2797280242666602,
+  "value_mse": 0.19998338939542748,
+  "train_loss_history": [
+    {
+      "epoch": 1,
+      "train_policy": 2.087283563613892,
+      "train_value": 0.4653329461812973,
+      "val_policy": 2.554650068283081,
+      "val_value": 0.0213450534211006,
+      "val_total": 2.5759951217041817
+    },
+    {
+      "epoch": 2,
+      "train_policy": 1.999595010280609,
+      "train_value": 0.24452133029699324,
+      "val_policy": 2.494557738304138,
+      "val_value": 0.005969351179373916,
+      "val_total": 2.500527089483512
+    }
+  ]
+}

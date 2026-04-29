@@ -1,0 +1,20 @@
+preset: large
+output_dir: experiments/neural_scaling_study/large
+seeds: [8300, 8301, 8302]
+belief_mode: frequency
+self_play_games: 8
+self_play_sims: 24
+self_play_depth: 8
+shard_size: 512
+train_epochs: 5
+batch_size: 64
+learning_rate: 0.001
+hidden_dim: 96
+eval_games: 3
+eval_sims: 24
+eval_depth: 8
+search_seed: 2026
+top_k_roads: 3
+top_k_trades: 2
+top_k_robber: 4
+diagnostic_samples: 384

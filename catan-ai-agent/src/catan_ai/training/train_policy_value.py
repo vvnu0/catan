@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import logging
 import math
+import json
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -93,6 +94,7 @@ def train(cfg: TrainConfig) -> Path:
     best_val_loss = math.inf
     best_path = ckpt_dir / "best.pt"
     patience_left = cfg.patience
+    history: list[dict] = []
 
     for epoch in range(1, cfg.epochs + 1):
         # --- Training ---
@@ -153,6 +155,14 @@ def train(cfg: TrainConfig) -> Path:
         avg_vp = val_policy_loss / max(val_batches, 1)
         avg_vv = val_value_loss / max(val_batches, 1)
         val_total = avg_vp + cfg.value_loss_weight * avg_vv
+        history.append({
+            "epoch": epoch,
+            "train_policy": avg_tp,
+            "train_value": avg_tv,
+            "val_policy": avg_vp,
+            "val_value": avg_vv,
+            "val_total": val_total,
+        })
 
         log.info(
             "Epoch %d/%d — train: policy=%.4f value=%.4f | val: policy=%.4f value=%.4f",
@@ -172,7 +182,13 @@ def train(cfg: TrainConfig) -> Path:
                 model,
                 optimizer,
                 epoch,
-                {"val_policy": avg_vp, "val_value": avg_vv, "val_total": val_total},
+                {
+                    "train_policy": avg_tp,
+                    "train_value": avg_tv,
+                    "val_policy": avg_vp,
+                    "val_value": avg_vv,
+                    "val_total": val_total,
+                },
                 best_path,
             )
         else:
@@ -192,6 +208,10 @@ def train(cfg: TrainConfig) -> Path:
             )
 
     log.info("Training complete.  Best checkpoint: %s", best_path)
+    (ckpt_dir / "training_history.json").write_text(
+        json.dumps(history, indent=2),
+        encoding="utf-8",
+    )
     return best_path
 
 

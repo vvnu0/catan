@@ -1,0 +1,16 @@
+experiment_name: mini_neural_exp
+output_dir: experiments/mini_neural_exp
+summary_path: reports/mini_neural_experiment_summary.json
+csv_path: experiments/mini_neural_exp/matchups.csv
+num_games: 2
+base_seed: 9000
+swap_seats: true
+search_seed: 2026
+max_simulations: 20
+max_depth: 8
+exploration_c: 1.41
+puct_c: 2.5
+top_k_roads: 3
+top_k_trades: 2
+top_k_robber: 4
+include_heuristic: true

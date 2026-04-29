@@ -258,6 +258,17 @@ class TestTinyOverfit:
 # NeuralMCTSPlayer integration tests
 # -----------------------------------------------------------------------
 
+class _BuildRoadPriorModel(torch.nn.Module):
+    """Deterministic stub that strongly prefers BUILD_ROAD actions."""
+
+    def forward(self, state_feats, action_feats, action_mask):
+        del state_feats
+        logits = action_feats[:, :, 4] * 20.0
+        logits = logits.masked_fill(~action_mask, float("-inf"))
+        value = torch.zeros(action_feats.shape[0], dtype=action_feats.dtype)
+        return logits, value
+
+
 class TestNeuralMCTSPlayer:
     def test_returns_legal_action(self):
         from catan_ai.players.neural_mcts_player import NeuralMCTSConfig, NeuralMCTSPlayer
@@ -309,6 +320,59 @@ class TestNeuralMCTSPlayer:
             if hasattr(player, "decide"):
                 player.decide(game, actions)
                 assert game.state.num_turns == turns_before
+
+    def test_strong_priors_change_root_expansion_order(self):
+        from catan_ai.adapters.action_codec import ActionCodec
+        from catan_ai.players.decision_context import DecisionContext
+        from catan_ai.players.neural_mcts_player import NeuralMCTS, NeuralMCTSConfig
+        from catan_ai.search.candidate_filter import CandidateFilter
+
+        game = Game([RandomPlayer(Color.RED), RandomPlayer(Color.BLUE)], seed=1)
+        for _ in range(12):
+            game.play_tick()
+
+        acting = game.state.current_color()
+        cfilter = CandidateFilter(top_k_roads=3, top_k_trades=2, top_k_robber=4)
+        ctx = DecisionContext(game, game.playable_actions, acting)
+        filtered = cfilter(ctx.public_state, ctx.encoded_actions)
+        assert filtered[0].action_type == "END_TURN"
+        assert any(ea.action_type == "BUILD_ROAD" for ea in filtered)
+
+        common = dict(max_simulations=4, max_depth=4, puct_c=2.5, seed=123)
+        cfg_off = NeuralMCTSConfig(
+            **common,
+            use_model_priors=False,
+            use_model_value=False,
+        )
+        cfg_on = NeuralMCTSConfig(
+            **common,
+            use_model_priors=True,
+            use_model_value=True,
+        )
+        model = _BuildRoadPriorModel()
+
+        off_ea, off_stats = NeuralMCTS(
+            root_color=acting,
+            model=model,
+            cfg=cfg_off,
+            candidate_filter=cfilter,
+        ).search(game.copy())
+        on_ea, on_stats = NeuralMCTS(
+            root_color=acting,
+            model=model,
+            cfg=cfg_on,
+            candidate_filter=cfilter,
+        ).search(game.copy())
+
+        assert off_ea.action_type == "END_TURN"
+        assert on_ea.action_type == "BUILD_ROAD"
+
+        off_top = next(iter(off_stats["root_children"]))
+        on_top = next(iter(on_stats["root_children"]))
+        assert off_top != on_top
+        assert ActionCodec.decode_to_str(off_ea) == off_top
+        assert ActionCodec.decode_to_str(on_ea) == on_top
+        assert on_stats["root_children"][on_top]["prior"] > 0.1
 
 
 class TestArena:

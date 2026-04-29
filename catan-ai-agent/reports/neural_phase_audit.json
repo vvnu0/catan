@@ -51,10 +51,10 @@
         }
       ],
       "details": {
-        "pytest_q_output": "........................................................................ [ 83%]\n..............                                                           [100%]\n86 passed in 25.38s",
-        "pytest_neural_output": ".........................                                                [100%]\n25 passed in 22.85s",
-        "full_pass_count": 86,
-        "target_pass_count": 25,
+        "pytest_q_output": "........................................................................ [ 82%]\n...............                                                          [100%]\n87 passed in 69.72s (0:01:09)",
+        "pytest_neural_output": "..........................                                               [100%]\n26 passed in 27.87s",
+        "full_pass_count": 87,
+        "target_pass_count": 26,
         "flaky_signals": "none observed in single-run audit"
       }
     },
@@ -281,12 +281,12 @@
         {
           "name": "Policy loss drops substantially",
           "status": "PASS",
-          "note": "before=2.0012, after=1.9207"
+          "note": "before=2.0007, after=1.9161"
         },
         {
           "name": "Value loss drops substantially",
           "status": "PASS",
-          "note": "before=1.1226, after=0.0001"
+          "note": "before=0.9782, after=0.0002"
         },
         {
           "name": "Checkpoint reload preserves outputs on fixed batch",
@@ -296,12 +296,12 @@
       ],
       "details": {
         "num_samples_used": 64,
-        "initial_policy_loss": 2.0012357234954834,
-        "final_policy_loss": 1.9207054376602173,
-        "initial_value_loss": 1.122551441192627,
-        "final_value_loss": 8.317181345773861e-05,
-        "top1_agreement_before": 0.46875,
-        "top1_agreement_after": 0.859375,
+        "initial_policy_loss": 2.000749349594116,
+        "final_policy_loss": 1.9161381721496582,
+        "initial_value_loss": 0.9782044887542725,
+        "final_value_loss": 0.0001881204079836607,
+        "top1_agreement_before": 0.734375,
+        "top1_agreement_after": 0.84375,
         "checkpoint_max_abs_logits_diff": 0.0,
         "checkpoint_max_abs_value_diff": 0.0,
         "checkpoint_path": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\reports\\_audit_tmp_checkpoint.pt"
@@ -689,32 +689,32 @@
           },
           {
             "file": "src/catan_ai/players/neural_mcts_player.py",
-            "line": 207,
+            "line": 209,
             "text": "is_root_turn = node.game.state.current_color() == self.root_color"
           },
           {
             "file": "src/catan_ai/players/neural_mcts_player.py",
-            "line": 283,
+            "line": 298,
             "text": "acting = node.game.state.current_color()"
           },
           {
             "file": "src/catan_ai/players/neural_mcts_player.py",
-            "line": 355,
+            "line": 370,
             "text": "def decide(self, game, playable_actions):"
           },
           {
             "file": "src/catan_ai/players/neural_mcts_player.py",
-            "line": 358,
+            "line": 373,
             "text": "if len(playable_actions) == 1:"
           },
           {
             "file": "src/catan_ai/players/neural_mcts_player.py",
-            "line": 359,
+            "line": 374,
             "text": "return playable_actions[0]"
           },
           {
             "file": "src/catan_ai/players/neural_mcts_player.py",
-            "line": 361,
+            "line": 376,
             "text": "root_ctx = DecisionContext(game, playable_actions, self.color)"
           },
           {
@@ -754,38 +754,53 @@
           },
           {
             "file": "tests/test_policy_value.py",
-            "line": 269,
+            "line": 280,
             "text": "game = Game([player, RandomPlayer(Color.BLUE)], seed=1)"
           },
           {
             "file": "tests/test_policy_value.py",
-            "line": 281,
+            "line": 292,
             "text": "game = Game([player, RandomPlayer(Color.BLUE)], seed=1)"
-          },
-          {
-            "file": "tests/test_policy_value.py",
-            "line": 293,
-            "text": "game = Game("
           },
           {
             "file": "tests/test_policy_value.py",
             "line": 304,
+            "text": "game = Game("
+          },
+          {
+            "file": "tests/test_policy_value.py",
+            "line": 315,
             "text": "turns_before = game.state.num_turns"
           },
           {
             "file": "tests/test_policy_value.py",
-            "line": 305,
+            "line": 316,
             "text": "actions = game.playable_actions"
           },
           {
             "file": "tests/test_policy_value.py",
-            "line": 308,
+            "line": 319,
             "text": "player = game.state.current_player()"
           },
           {
             "file": "tests/test_policy_value.py",
-            "line": 311,
+            "line": 322,
             "text": "assert game.state.num_turns == turns_before"
+          },
+          {
+            "file": "tests/test_policy_value.py",
+            "line": 330,
+            "text": "game = Game([RandomPlayer(Color.RED), RandomPlayer(Color.BLUE)], seed=1)"
+          },
+          {
+            "file": "tests/test_policy_value.py",
+            "line": 334,
+            "text": "acting = game.state.current_color()"
+          },
+          {
+            "file": "tests/test_policy_value.py",
+            "line": 336,
+            "text": "ctx = DecisionContext(game, game.playable_actions, acting)"
           }
         ],
         "disallowed_violations": []
@@ -793,7 +808,7 @@
     },
     {
       "name": "NeuralMCTS fixed-state audit",
-      "status": "FAIL",
+      "status": "PASS",
       "checks": [
         {
           "name": "Chosen raw action is always from original live playable_actions",
@@ -803,11 +818,11 @@
         {
           "name": "NeuralMCTS (priors/value off) matches plain MCTS, or explained",
           "status": "PASS",
-          "note": "matched plain MCTS exactly"
+          "note": "diff is expected: NeuralMCTS uses PUCT selection while plain MCTS uses UCT"
         },
         {
-          "name": "Enabling priors/value changes root ranking on fixed state",
-          "status": "FAIL",
+          "name": "Enabling priors/value changes root ranking or visit distribution on fixed state",
+          "status": "PASS",
           "note": ""
         },
         {
@@ -821,154 +836,324 @@
           {
             "seed": 777,
             "ticks": 45,
+            "actual_turns": 17,
             "acting_color": "BLUE",
             "legal_ok": true,
             "off_matches_plain": true,
             "ranking_changed_with_model": false,
+            "visit_distribution_changed_with_model": true,
+            "ranking_or_visits_changed_with_model": true,
             "model_active": true,
             "plain": {
-              "chosen_encoded_action": "BLUE:END_TURN",
-              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.END_TURN, value=None)",
+              "chosen_encoded_action": "BLUE:BUY_DEVELOPMENT_CARD",
+              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.BUY_DEVELOPMENT_CARD, value=None)",
               "top5_root_actions": [
+                [
+                  "BLUE:BUY_DEVELOPMENT_CARD",
+                  {
+                    "visits": 22,
+                    "avg_value": 0.1203
+                  }
+                ],
                 [
                   "BLUE:END_TURN",
                   {
-                    "visits": 40,
-                    "avg_value": 0.0314
+                    "visits": 18,
+                    "avg_value": 0.0544
                   }
                 ]
               ]
             },
             "neural_off": {
-              "chosen_encoded_action": "BLUE:END_TURN",
-              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.END_TURN, value=None)",
+              "chosen_encoded_action": "BLUE:BUY_DEVELOPMENT_CARD",
+              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.BUY_DEVELOPMENT_CARD, value=None)",
               "top5_root_actions": [
+                [
+                  "BLUE:BUY_DEVELOPMENT_CARD",
+                  {
+                    "visits": 23,
+                    "avg_value": 0.12,
+                    "prior": 0.0
+                  }
+                ],
                 [
                   "BLUE:END_TURN",
                   {
-                    "visits": 40,
-                    "avg_value": 0.0339,
+                    "visits": 17,
+                    "avg_value": 0.0607,
                     "prior": 0.0
                   }
                 ]
               ]
             },
             "neural_on": {
-              "chosen_encoded_action": "BLUE:END_TURN",
-              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.END_TURN, value=None)",
+              "chosen_encoded_action": "BLUE:BUY_DEVELOPMENT_CARD",
+              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.BUY_DEVELOPMENT_CARD, value=None)",
               "top5_root_actions": [
+                [
+                  "BLUE:BUY_DEVELOPMENT_CARD",
+                  {
+                    "visits": 33,
+                    "avg_value": 0.8455,
+                    "prior": 0.4984
+                  }
+                ],
                 [
                   "BLUE:END_TURN",
                   {
-                    "visits": 40,
-                    "avg_value": 0.6862,
-                    "prior": 1.0
+                    "visits": 7,
+                    "avg_value": 0.0428,
+                    "prior": 0.5016
                   }
                 ]
               ],
-              "root_value_estimate": 0.9884172677993774
+              "root_value_estimate": 0.7621307969093323
             }
           },
           {
             "seed": 778,
             "ticks": 40,
-            "acting_color": "RED",
+            "actual_turns": 17,
+            "acting_color": "BLUE",
             "legal_ok": true,
-            "off_matches_plain": true,
-            "ranking_changed_with_model": false,
+            "off_matches_plain": false,
+            "ranking_changed_with_model": true,
+            "visit_distribution_changed_with_model": true,
+            "ranking_or_visits_changed_with_model": true,
             "model_active": true,
             "plain": {
-              "chosen_encoded_action": "RED:ROLL",
-              "chosen_raw_action": "Action(color=C.RED, action_type=AT.ROLL, value=None)",
+              "chosen_encoded_action": "BLUE:MOVE_ROBBER(((-2,0,2),RED))",
+              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.MOVE_ROBBER, value=((-2, 0, 2), C.RED))",
               "top5_root_actions": [
                 [
-                  "RED:ROLL",
+                  "BLUE:MOVE_ROBBER(((-2,0,2),RED))",
                   {
-                    "visits": 40,
-                    "avg_value": -0.1103
+                    "visits": 11,
+                    "avg_value": 0.1297
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((2,0,-2),RED))",
+                  {
+                    "visits": 11,
+                    "avg_value": 0.1488
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((-1,-1,2),RED))",
+                  {
+                    "visits": 9,
+                    "avg_value": 0.0789
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((-1,0,1),None))",
+                  {
+                    "visits": 9,
+                    "avg_value": 0.0244
                   }
                 ]
               ]
             },
             "neural_off": {
-              "chosen_encoded_action": "RED:ROLL",
-              "chosen_raw_action": "Action(color=C.RED, action_type=AT.ROLL, value=None)",
+              "chosen_encoded_action": "BLUE:MOVE_ROBBER(((2,0,-2),RED))",
+              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.MOVE_ROBBER, value=((2, 0, -2), C.RED))",
               "top5_root_actions": [
                 [
-                  "RED:ROLL",
+                  "BLUE:MOVE_ROBBER(((2,0,-2),RED))",
                   {
-                    "visits": 40,
-                    "avg_value": -0.1103,
+                    "visits": 12,
+                    "avg_value": 0.1483,
+                    "prior": 0.0
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((-2,0,2),RED))",
+                  {
+                    "visits": 11,
+                    "avg_value": 0.1315,
+                    "prior": 0.0
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((-1,-1,2),RED))",
+                  {
+                    "visits": 9,
+                    "avg_value": 0.0856,
+                    "prior": 0.0
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((-1,0,1),None))",
+                  {
+                    "visits": 8,
+                    "avg_value": 0.0796,
                     "prior": 0.0
                   }
                 ]
               ]
             },
             "neural_on": {
-              "chosen_encoded_action": "RED:ROLL",
-              "chosen_raw_action": "Action(color=C.RED, action_type=AT.ROLL, value=None)",
+              "chosen_encoded_action": "BLUE:MOVE_ROBBER(((-2,0,2),RED))",
+              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.MOVE_ROBBER, value=((-2, 0, 2), C.RED))",
               "top5_root_actions": [
                 [
-                  "RED:ROLL",
+                  "BLUE:MOVE_ROBBER(((-2,0,2),RED))",
                   {
-                    "visits": 40,
-                    "avg_value": -0.5411,
-                    "prior": 1.0
+                    "visits": 18,
+                    "avg_value": 0.9685,
+                    "prior": 0.0556
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((-1,-1,2),RED))",
+                  {
+                    "visits": 14,
+                    "avg_value": 0.9793,
+                    "prior": 0.0556
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((2,0,-2),RED))",
+                  {
+                    "visits": 5,
+                    "avg_value": 0.5704,
+                    "prior": 0.0556
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((-1,0,1),None))",
+                  {
+                    "visits": 3,
+                    "avg_value": 0.8176,
+                    "prior": 0.0556
                   }
                 ]
               ],
-              "root_value_estimate": 0.6839459538459778
+              "root_value_estimate": 0.9643182754516602
             }
           },
           {
             "seed": 779,
             "ticks": 50,
+            "actual_turns": 19,
             "acting_color": "BLUE",
             "legal_ok": true,
             "off_matches_plain": true,
-            "ranking_changed_with_model": false,
+            "ranking_changed_with_model": true,
+            "visit_distribution_changed_with_model": true,
+            "ranking_or_visits_changed_with_model": true,
             "model_active": true,
             "plain": {
-              "chosen_encoded_action": "BLUE:ROLL",
-              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.ROLL, value=None)",
+              "chosen_encoded_action": "BLUE:MOVE_ROBBER(((2,0,-2),RED))",
+              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.MOVE_ROBBER, value=((2, 0, -2), C.RED))",
               "top5_root_actions": [
                 [
-                  "BLUE:ROLL",
+                  "BLUE:MOVE_ROBBER(((2,0,-2),RED))",
                   {
-                    "visits": 40,
-                    "avg_value": -0.0475
+                    "visits": 11,
+                    "avg_value": 0.1031
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((0,-1,1),RED))",
+                  {
+                    "visits": 10,
+                    "avg_value": 0.0895
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((1,-2,1),RED))",
+                  {
+                    "visits": 10,
+                    "avg_value": 0.061
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((0,-2,2),RED))",
+                  {
+                    "visits": 9,
+                    "avg_value": 0.0407
                   }
                 ]
               ]
             },
             "neural_off": {
-              "chosen_encoded_action": "BLUE:ROLL",
-              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.ROLL, value=None)",
+              "chosen_encoded_action": "BLUE:MOVE_ROBBER(((2,0,-2),RED))",
+              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.MOVE_ROBBER, value=((2, 0, -2), C.RED))",
               "top5_root_actions": [
                 [
-                  "BLUE:ROLL",
+                  "BLUE:MOVE_ROBBER(((2,0,-2),RED))",
                   {
-                    "visits": 40,
-                    "avg_value": -0.0475,
+                    "visits": 11,
+                    "avg_value": 0.1031,
+                    "prior": 0.0
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((0,-1,1),RED))",
+                  {
+                    "visits": 10,
+                    "avg_value": 0.0895,
+                    "prior": 0.0
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((1,-2,1),RED))",
+                  {
+                    "visits": 10,
+                    "avg_value": 0.061,
+                    "prior": 0.0
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((0,-2,2),RED))",
+                  {
+                    "visits": 9,
+                    "avg_value": 0.0407,
                     "prior": 0.0
                   }
                 ]
               ]
             },
             "neural_on": {
-              "chosen_encoded_action": "BLUE:ROLL",
-              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.ROLL, value=None)",
+              "chosen_encoded_action": "BLUE:MOVE_ROBBER(((0,-1,1),RED))",
+              "chosen_raw_action": "Action(color=C.BLUE, action_type=AT.MOVE_ROBBER, value=((0, -1, 1), C.RED))",
               "top5_root_actions": [
                 [
-                  "BLUE:ROLL",
+                  "BLUE:MOVE_ROBBER(((0,-1,1),RED))",
                   {
-                    "visits": 40,
-                    "avg_value": 0.2284,
-                    "prior": 1.0
+                    "visits": 32,
+                    "avg_value": 0.7674,
+                    "prior": 0.0556
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((0,-2,2),RED))",
+                  {
+                    "visits": 3,
+                    "avg_value": -0.262,
+                    "prior": 0.0556
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((1,-2,1),RED))",
+                  {
+                    "visits": 3,
+                    "avg_value": -0.3175,
+                    "prior": 0.0556
+                  }
+                ],
+                [
+                  "BLUE:MOVE_ROBBER(((2,0,-2),RED))",
+                  {
+                    "visits": 2,
+                    "avg_value": 0.0716,
+                    "prior": 0.0556
                   }
                 ]
               ],
-              "root_value_estimate": 0.9403495788574219
+              "root_value_estimate": 0.9971385598182678
             }
           }
         ]
@@ -991,67 +1176,67 @@
         {
           "name": "No obvious END_TURN spam in buildable states",
           "status": "PASS",
-          "note": "{\"rate\": 0.0, \"end_turn_while_build_city_or_settlement\": 0, \"total_decisions\": 7921}"
+          "note": "{\"rate\": 0.00044169611307420494, \"end_turn_while_build_city_or_settlement\": 4, \"total_decisions\": 9056}"
         },
         {
           "name": "Arena results reproducible under fixed seeds",
           "status": "PASS",
-          "note": "first=(6, 2, 0) repeat=(6, 2, 0)"
+          "note": "first=(8, 0, 0) repeat=(8, 0, 0)"
         }
       ],
       "details": {
         "neural_vs_debug": {
           "label": "NeuralMCTS vs DebugPlayer",
           "games": 8,
-          "wins": 8,
-          "losses": 0,
+          "wins": 7,
+          "losses": 1,
           "draws": 0,
           "turn_counts": [
-            198,
-            291,
+            552,
+            281,
             131,
-            159,
-            179,
-            85,
-            248,
-            474
+            625,
+            236,
+            105,
+            142,
+            208
           ],
           "move_times": [
-            21.358521976729943,
-            18.389542775952982,
-            17.179679271518953,
-            20.780501356221972,
-            18.68232333411773,
-            24.517580274014588,
-            24.92853883434577,
-            22.09164611633748
+            23.05443896107378,
+            13.986136183206343,
+            17.203046268996648,
+            21.397046310487667,
+            17.723629966042353,
+            22.79762613728632,
+            16.571044134608258,
+            28.853801805954696
           ]
         },
         "neural_vs_random": {
           "label": "NeuralMCTS vs RandomPlayer",
           "games": 8,
-          "wins": 6,
-          "losses": 2,
+          "wins": 8,
+          "losses": 0,
           "draws": 0,
           "turn_counts": [
-            500,
-            547,
-            159,
-            172,
-            149,
-            233,
-            70,
-            213
+            640,
+            309,
+            235,
+            223,
+            451,
+            129,
+            90,
+            246
           ],
           "move_times": [
-            19.398574311491274,
-            23.67746287852176,
-            16.507142308987994,
-            20.838434438941615,
-            19.943238121160878,
-            25.124989462601224,
-            19.692356636401563,
-            17.611533094351614
+            35.29908586952021,
+            37.38892960144364,
+            36.18053660109438,
+            36.73012894605084,
+            24.875385124707012,
+            27.033818711401427,
+            28.297630284214392,
+            23.154295029864805
           ]
         },
         "mcts_vs_debug": {
@@ -1071,62 +1256,62 @@
             442
           ],
           "move_times": [
-            10.201879370865734,
-            11.184394660898867,
-            7.2271964357544975,
-            9.746837237740847,
-            9.98074944363907,
-            9.768467137432644,
-            10.26656770740043,
-            9.108156593097455
+            13.347635874650003,
+            11.948260427004394,
+            7.80367380953283,
+            10.156614895404733,
+            9.927403888044259,
+            10.402543193982048,
+            9.971100627152733,
+            8.824339542093544
           ]
         },
         "neural_vs_random_repeat": {
           "label": "NeuralMCTS vs RandomPlayer (repeat)",
           "games": 8,
-          "wins": 6,
-          "losses": 2,
+          "wins": 8,
+          "losses": 0,
           "draws": 0,
           "turn_counts": [
-            500,
-            547,
-            159,
-            172,
-            149,
-            233,
-            70,
-            213
+            640,
+            309,
+            235,
+            223,
+            451,
+            129,
+            90,
+            246
           ],
           "move_times": [
-            19.64304831864409,
-            23.42982218861792,
-            17.306110678383938,
-            20.583146219888597,
-            20.503952018624265,
-            24.760710542561508,
-            19.746832749435463,
-            18.51784604226353
+            31.05071570100274,
+            23.863287560788876,
+            24.4104643778425,
+            26.670933224714215,
+            16.89798476691458,
+            19.999671343452576,
+            23.677178873749398,
+            21.167732749851858
           ]
         },
         "pathology_counters": {
-          "end_turn_while_build_city_or_settlement": 0,
-          "total_decisions": 7921
+          "end_turn_while_build_city_or_settlement": 4,
+          "total_decisions": 9056
         }
       }
     },
     {
       "name": "Model output quality audit",
-      "status": "PASS",
+      "status": "FAIL",
       "checks": [
         {
           "name": "Priors are not uniformly flat on most states",
-          "status": "PASS",
-          "note": "max_probs=[0.018518518656492233, 0.12681978940963745, 0.2282189130783081, 0.2720021605491638, 0.34168586134910583, 0.5340031385421753, 0.3716244697570801, 0.37162521481513977, 0.36428558826446533, 0.05555564910173416]"
+          "status": "FAIL",
+          "note": "max_probs=[0.018518518656492233, 0.1419047713279724, 0.2804430425167084, 0.22996872663497925, 0.23286738991737366, 0.5324612259864807, 0.317187637090683, 0.3506639003753662, 0.3001701235771179, 0.05555630847811699]"
         },
         {
           "name": "Priors vary across states",
           "status": "PASS",
-          "note": "max_probs=[0.018518518656492233, 0.12681978940963745, 0.2282189130783081, 0.2720021605491638, 0.34168586134910583, 0.5340031385421753, 0.3716244697570801, 0.37162521481513977, 0.36428558826446533, 0.05555564910173416]"
+          "note": "max_probs=[0.018518518656492233, 0.1419047713279724, 0.2804430425167084, 0.22996872663497925, 0.23286738991737366, 0.5324612259864807, 0.317187637090683, 0.3506639003753662, 0.3001701235771179, 0.05555630847811699]"
         },
         {
           "name": "Value predictions vary across states",
@@ -1144,27 +1329,27 @@
         "top1_match_rate": 0.8,
         "max_pred_probabilities": [
           0.018518518656492233,
-          0.12681978940963745,
-          0.2282189130783081,
-          0.2720021605491638,
-          0.34168586134910583,
-          0.5340031385421753,
-          0.3716244697570801,
-          0.37162521481513977,
-          0.36428558826446533,
-          0.05555564910173416
+          0.1419047713279724,
+          0.2804430425167084,
+          0.22996872663497925,
+          0.23286738991737366,
+          0.5324612259864807,
+          0.317187637090683,
+          0.3506639003753662,
+          0.3001701235771179,
+          0.05555630847811699
         ],
         "value_predictions": [
-          -0.9956057667732239,
-          -0.9999178647994995,
+          -0.9934751987457275,
+          -0.9999927878379822,
           -1.0,
-          0.9999999403953552,
+          0.9999974966049194,
           1.0,
-          -0.9998242855072021,
-          -0.9998610019683838,
-          -0.9999126195907593,
-          0.9999822378158569,
-          0.9999998211860657
+          -0.9999716877937317,
+          -0.9998649954795837,
+          -0.9999997019767761,
+          0.9999542832374573,
+          0.9999977946281433
         ],
         "state_rows": [
           {
@@ -1217,7 +1402,7 @@
                 0.0
               ]
             ],
-            "value_prediction": -0.9956057667732239
+            "value_prediction": -0.9934751987457275
           },
           {
             "meta": {
@@ -1228,23 +1413,23 @@
             "pred_top5": [
               [
                 "RED:BUILD_ROAD((0,20))",
-                0.12681978940963745
+                0.1419047713279724
               ],
               [
                 "RED:BUILD_ROAD((0,5))",
-                0.12681978940963745
+                0.1419047713279724
               ],
               [
                 "RED:BUILD_ROAD((1,2))",
-                0.12681978940963745
+                0.1419047713279724
               ],
               [
                 "RED:BUILD_ROAD((1,6))",
-                0.12681978940963745
+                0.1419047713279724
               ],
               [
                 "RED:BUILD_ROAD((13,34))",
-                0.12681978940963745
+                0.1419047713279724
               ]
             ],
             "teacher_top5": [
@@ -1269,7 +1454,7 @@
                 0.0
               ]
             ],
-            "value_prediction": -0.9999178647994995
+            "value_prediction": -0.9999927878379822
           },
           {
             "meta": {
@@ -1280,23 +1465,23 @@
             "pred_top5": [
               [
                 "RED:END_TURN",
-                0.2282189130783081
+                0.2804430425167084
               ],
               [
                 "RED:MARITIME_TRADE((ORE,ORE,ORE,ORE,BRICK))",
-                0.09647264331579208
+                0.08994461596012115
               ],
               [
                 "RED:MARITIME_TRADE((ORE,ORE,ORE,ORE,SHEEP))",
-                0.09647264331579208
+                0.08994461596012115
               ],
               [
                 "RED:MARITIME_TRADE((ORE,ORE,ORE,ORE,WHEAT))",
-                0.09647264331579208
+                0.08994461596012115
               ],
               [
                 "RED:MARITIME_TRADE((ORE,ORE,ORE,ORE,WOOD))",
-                0.09647264331579208
+                0.08994461596012115
               ]
             ],
             "teacher_top5": [
@@ -1332,23 +1517,23 @@
             "pred_top5": [
               [
                 "BLUE:BUILD_SETTLEMENT(4)",
-                0.2720021605491638
+                0.22996872663497925
               ],
               [
                 "BLUE:END_TURN",
-                0.26303282380104065
+                0.21666285395622253
               ],
               [
                 "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,BRICK))",
-                0.11527669429779053
+                0.12628772854804993
               ],
               [
                 "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,ORE))",
-                0.11527625471353531
+                0.12628772854804993
               ],
               [
                 "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,WHEAT))",
-                0.11527625471353531
+                0.12628772854804993
               ]
             ],
             "teacher_top5": [
@@ -1373,7 +1558,7 @@
                 0.0
               ]
             ],
-            "value_prediction": 0.9999999403953552
+            "value_prediction": 0.9999974966049194
           },
           {
             "meta": {
@@ -1384,23 +1569,23 @@
             "pred_top5": [
               [
                 "BLUE:END_TURN",
-                0.34168586134910583
+                0.23286738991737366
+              ],
+              [
+                "BLUE:MARITIME_TRADE((WHEAT,WHEAT,WHEAT,WHEAT,WOOD))",
+                0.09589286893606186
               ],
               [
                 "BLUE:MARITIME_TRADE((BRICK,BRICK,BRICK,BRICK,ORE))",
-                0.08228929340839386
+                0.09589140117168427
               ],
               [
                 "BLUE:MARITIME_TRADE((BRICK,BRICK,BRICK,BRICK,SHEEP))",
-                0.08228929340839386
+                0.09589140117168427
               ],
               [
                 "BLUE:MARITIME_TRADE((BRICK,BRICK,BRICK,BRICK,WHEAT))",
-                0.08228929340839386
-              ],
-              [
-                "BLUE:MARITIME_TRADE((BRICK,BRICK,BRICK,BRICK,WOOD))",
-                0.08228929340839386
+                0.09589140117168427
               ]
             ],
             "teacher_top5": [
@@ -1436,11 +1621,11 @@
             "pred_top5": [
               [
                 "RED:PLAY_KNIGHT_CARD",
-                0.5340031385421753
+                0.5324612259864807
               ],
               [
                 "RED:ROLL",
-                0.4659968316555023
+                0.4675388038158417
               ]
             ],
             "teacher_top5": [
@@ -1453,7 +1638,7 @@
                 0.46666666865348816
               ]
             ],
-            "value_prediction": -0.9998242855072021
+            "value_prediction": -0.9999716877937317
           },
           {
             "meta": {
@@ -1464,23 +1649,23 @@
             "pred_top5": [
               [
                 "RED:END_TURN",
-                0.3716244697570801
+                0.317187637090683
               ],
               [
                 "RED:MARITIME_TRADE((WOOD,WOOD,WOOD,WOOD,BRICK))",
-                0.15709389746189117
+                0.17070308327674866
               ],
               [
                 "RED:MARITIME_TRADE((WOOD,WOOD,WOOD,WOOD,ORE))",
-                0.15709389746189117
+                0.17070308327674866
               ],
               [
                 "RED:MARITIME_TRADE((WOOD,WOOD,WOOD,WOOD,SHEEP))",
-                0.15709389746189117
+                0.17070308327674866
               ],
               [
                 "RED:MARITIME_TRADE((WOOD,WOOD,WOOD,WOOD,WHEAT))",
-                0.15709389746189117
+                0.17070308327674866
               ]
             ],
             "teacher_top5": [
@@ -1505,7 +1690,7 @@
                 0.0
               ]
             ],
-            "value_prediction": -0.9998610019683838
+            "value_prediction": -0.9998649954795837
           },
           {
             "meta": {
@@ -1516,23 +1701,23 @@
             "pred_top5": [
               [
                 "RED:END_TURN",
-                0.37162521481513977
-              ],
-              [
-                "RED:MARITIME_TRADE((WOOD,WOOD,WOOD,WOOD,WHEAT))",
-                0.15709392726421356
+                0.3506639003753662
               ],
               [
                 "RED:MARITIME_TRADE((WOOD,WOOD,WOOD,WOOD,BRICK))",
-                0.1570936143398285
+                0.16233402490615845
               ],
               [
                 "RED:MARITIME_TRADE((WOOD,WOOD,WOOD,WOOD,ORE))",
-                0.1570936143398285
+                0.16233402490615845
               ],
               [
                 "RED:MARITIME_TRADE((WOOD,WOOD,WOOD,WOOD,SHEEP))",
-                0.1570936143398285
+                0.16233402490615845
+              ],
+              [
+                "RED:MARITIME_TRADE((WOOD,WOOD,WOOD,WOOD,WHEAT))",
+                0.16233402490615845
               ]
             ],
             "teacher_top5": [
@@ -1557,7 +1742,7 @@
                 0.0
               ]
             ],
-            "value_prediction": -0.9999126195907593
+            "value_prediction": -0.9999997019767761
           },
           {
             "meta": {
@@ -1568,23 +1753,23 @@
             "pred_top5": [
               [
                 "BLUE:END_TURN",
-                0.36428558826446533
-              ],
-              [
-                "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,BRICK))",
-                0.15892860293388367
-              ],
-              [
-                "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,ORE))",
-                0.15892860293388367
-              ],
-              [
-                "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,WHEAT))",
-                0.15892860293388367
+                0.3001701235771179
               ],
               [
                 "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,WOOD))",
-                0.15892860293388367
+                0.1749594807624817
+              ],
+              [
+                "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,BRICK))",
+                0.174956813454628
+              ],
+              [
+                "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,ORE))",
+                0.174956813454628
+              ],
+              [
+                "BLUE:MARITIME_TRADE((SHEEP,SHEEP,SHEEP,SHEEP,WHEAT))",
+                0.174956813454628
               ]
             ],
             "teacher_top5": [
@@ -1609,7 +1794,7 @@
                 0.0
               ]
             ],
-            "value_prediction": 0.9999822378158569
+            "value_prediction": 0.9999542832374573
           },
           {
             "meta": {
@@ -1620,23 +1805,23 @@
             "pred_top5": [
               [
                 "BLUE:MOVE_ROBBER(((2,-2,0),None))",
-                0.05555564910173416
+                0.05555630847811699
               ],
               [
                 "BLUE:MOVE_ROBBER(((2,0,-2),None))",
-                0.05555564910173416
+                0.05555630847811699
               ],
               [
                 "BLUE:MOVE_ROBBER(((-1,-1,2),RED))",
-                0.055555544793605804
+                0.05555545911192894
               ],
               [
                 "BLUE:MOVE_ROBBER(((-1,1,0),None))",
-                0.055555544793605804
+                0.05555545911192894
               ],
               [
                 "BLUE:MOVE_ROBBER(((-1,2,-1),None))",
-                0.055555544793605804
+                0.05555545911192894
               ]
             ],
             "teacher_top5": [
@@ -1661,7 +1846,7 @@
                 0.0
               ]
             ],
-            "value_prediction": 0.9999998211860657
+            "value_prediction": 0.9999977946281433
           }
         ]
       }

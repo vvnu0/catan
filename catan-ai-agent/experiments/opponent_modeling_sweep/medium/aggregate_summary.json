@@ -1,0 +1,1670 @@
+{
+  "experiment_name": "opponent_modeling_sweep",
+  "preset": "medium",
+  "seeds": [
+    7200,
+    7201
+  ],
+  "games_per_matchup": 4,
+  "sims_per_move": [
+    16
+  ],
+  "particle_world_counts": [
+    2,
+    4
+  ],
+  "regimes": [
+    "compute_matched",
+    "world_scaled"
+  ],
+  "elapsed_sec": 165.10236010001972,
+  "matchups": [
+    {
+      "setting_id": "sims_16_worlds_2_compute_matched",
+      "regime": "compute_matched",
+      "sims_per_move": 16,
+      "particle_worlds": 2,
+      "label": "frequency vs none",
+      "candidate_mode": "frequency",
+      "baseline_mode": "none",
+      "games": 4,
+      "wins": 3,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.75,
+      "avg_final_vp": 7.75,
+      "avg_turns": 156,
+      "mean_latency_ms": 3.9087190673250167,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_2_compute_matched",
+      "regime": "compute_matched",
+      "sims_per_move": 16,
+      "particle_worlds": 2,
+      "label": "particle vs none",
+      "candidate_mode": "particle",
+      "baseline_mode": "none",
+      "games": 4,
+      "wins": 1,
+      "losses": 2,
+      "draws": 1,
+      "win_rate": 0.25,
+      "avg_final_vp": 5.25,
+      "avg_turns": 371.25,
+      "mean_latency_ms": 3.604410512466279,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_2_compute_matched",
+      "regime": "compute_matched",
+      "sims_per_move": 16,
+      "particle_worlds": 2,
+      "label": "particle vs frequency",
+      "candidate_mode": "particle",
+      "baseline_mode": "frequency",
+      "games": 4,
+      "wins": 2,
+      "losses": 1,
+      "draws": 1,
+      "win_rate": 0.5,
+      "avg_final_vp": 6.5,
+      "avg_turns": 384,
+      "mean_latency_ms": 6.16550851280477,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_2_world_scaled",
+      "regime": "world_scaled",
+      "sims_per_move": 16,
+      "particle_worlds": 2,
+      "label": "frequency vs none",
+      "candidate_mode": "frequency",
+      "baseline_mode": "none",
+      "games": 4,
+      "wins": 3,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.75,
+      "avg_final_vp": 7.75,
+      "avg_turns": 156,
+      "mean_latency_ms": 5.088080863269621,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_2_world_scaled",
+      "regime": "world_scaled",
+      "sims_per_move": 16,
+      "particle_worlds": 2,
+      "label": "particle vs none",
+      "candidate_mode": "particle",
+      "baseline_mode": "none",
+      "games": 4,
+      "wins": 3,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.75,
+      "avg_final_vp": 8,
+      "avg_turns": 122.5,
+      "mean_latency_ms": 9.778129755642839,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 32,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_2_world_scaled",
+      "regime": "world_scaled",
+      "sims_per_move": 16,
+      "particle_worlds": 2,
+      "label": "particle vs frequency",
+      "candidate_mode": "particle",
+      "baseline_mode": "frequency",
+      "games": 4,
+      "wins": 3,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.75,
+      "avg_final_vp": 6.75,
+      "avg_turns": 135,
+      "mean_latency_ms": 9.602639345055795,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 32,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 2,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_4_compute_matched",
+      "regime": "compute_matched",
+      "sims_per_move": 16,
+      "particle_worlds": 4,
+      "label": "frequency vs none",
+      "candidate_mode": "frequency",
+      "baseline_mode": "none",
+      "games": 4,
+      "wins": 3,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.75,
+      "avg_final_vp": 7.75,
+      "avg_turns": 156,
+      "mean_latency_ms": 4.776581615189106,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_4_compute_matched",
+      "regime": "compute_matched",
+      "sims_per_move": 16,
+      "particle_worlds": 4,
+      "label": "particle vs none",
+      "candidate_mode": "particle",
+      "baseline_mode": "none",
+      "games": 4,
+      "wins": 1,
+      "losses": 2,
+      "draws": 1,
+      "win_rate": 0.25,
+      "avg_final_vp": 4,
+      "avg_turns": 413.75,
+      "mean_latency_ms": 6.508464767340565,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_4_compute_matched",
+      "regime": "compute_matched",
+      "sims_per_move": 16,
+      "particle_worlds": 4,
+      "label": "particle vs frequency",
+      "candidate_mode": "particle",
+      "baseline_mode": "frequency",
+      "games": 4,
+      "wins": 1,
+      "losses": 2,
+      "draws": 1,
+      "win_rate": 0.25,
+      "avg_final_vp": 4.5,
+      "avg_turns": 408.75,
+      "mean_latency_ms": 5.5043753400440565,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_4_world_scaled",
+      "regime": "world_scaled",
+      "sims_per_move": 16,
+      "particle_worlds": 4,
+      "label": "frequency vs none",
+      "candidate_mode": "frequency",
+      "baseline_mode": "none",
+      "games": 4,
+      "wins": 3,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.75,
+      "avg_final_vp": 7.75,
+      "avg_turns": 156,
+      "mean_latency_ms": 6.91107585470674,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_4_world_scaled",
+      "regime": "world_scaled",
+      "sims_per_move": 16,
+      "particle_worlds": 4,
+      "label": "particle vs none",
+      "candidate_mode": "particle",
+      "baseline_mode": "none",
+      "games": 4,
+      "wins": 3,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.75,
+      "avg_final_vp": 8,
+      "avg_turns": 104.5,
+      "mean_latency_ms": 19.49596938470721,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 64,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_4_world_scaled",
+      "regime": "world_scaled",
+      "sims_per_move": 16,
+      "particle_worlds": 4,
+      "label": "particle vs frequency",
+      "candidate_mode": "particle",
+      "baseline_mode": "frequency",
+      "games": 4,
+      "wins": 3,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.75,
+      "avg_final_vp": 7.75,
+      "avg_turns": 121,
+      "mean_latency_ms": 30.27928076968881,
+      "seed_info": {
+        "seeds": [
+          7200,
+          7201
+        ],
+        "swap_seats": true
+      },
+      "candidate_search_budget": {
+        "total_simulations": 64,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      },
+      "baseline_search_budget": {
+        "total_simulations": 16,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 4,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    }
+  ],
+  "setting_summaries": [
+    {
+      "setting_id": "sims_16_worlds_2_compute_matched",
+      "regime": "compute_matched",
+      "sims_per_move": 16,
+      "particle_worlds": 2,
+      "seeds": [
+        7200,
+        7201
+      ],
+      "games_per_matchup": 4,
+      "matchups": [
+        {
+          "setting_id": "sims_16_worlds_2_compute_matched",
+          "regime": "compute_matched",
+          "sims_per_move": 16,
+          "particle_worlds": 2,
+          "label": "frequency vs none",
+          "candidate_mode": "frequency",
+          "baseline_mode": "none",
+          "games": 4,
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "win_rate": 0.75,
+          "avg_final_vp": 7.75,
+          "avg_turns": 156,
+          "mean_latency_ms": 3.9087190673250167,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        },
+        {
+          "setting_id": "sims_16_worlds_2_compute_matched",
+          "regime": "compute_matched",
+          "sims_per_move": 16,
+          "particle_worlds": 2,
+          "label": "particle vs none",
+          "candidate_mode": "particle",
+          "baseline_mode": "none",
+          "games": 4,
+          "wins": 1,
+          "losses": 2,
+          "draws": 1,
+          "win_rate": 0.25,
+          "avg_final_vp": 5.25,
+          "avg_turns": 371.25,
+          "mean_latency_ms": 3.604410512466279,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        },
+        {
+          "setting_id": "sims_16_worlds_2_compute_matched",
+          "regime": "compute_matched",
+          "sims_per_move": 16,
+          "particle_worlds": 2,
+          "label": "particle vs frequency",
+          "candidate_mode": "particle",
+          "baseline_mode": "frequency",
+          "games": 4,
+          "wins": 2,
+          "losses": 1,
+          "draws": 1,
+          "win_rate": 0.5,
+          "avg_final_vp": 6.5,
+          "avg_turns": 384,
+          "mean_latency_ms": 6.16550851280477,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        }
+      ],
+      "diagnostics": {
+        "none": {
+          "mode": "none",
+          "players_created": 8,
+          "decisions": 2653,
+          "worlds_attempted": 0,
+          "worlds_used": 0,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 0,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.0,
+          "active_belief_decisions_estimate": 0.0,
+          "avg_belief_updates_per_player_game": 0.0,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        },
+        "frequency": {
+          "mode": "frequency",
+          "players_created": 8,
+          "decisions": 2807,
+          "worlds_attempted": 965,
+          "worlds_used": 965,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 1,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.3437833986462415,
+          "active_belief_decisions_estimate": 965.0,
+          "avg_belief_updates_per_player_game": 120.625,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        },
+        "particle": {
+          "mode": "particle",
+          "players_created": 8,
+          "decisions": 3664,
+          "worlds_attempted": 2586,
+          "worlds_used": 2586,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 2,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.7057860262008734,
+          "active_belief_decisions_estimate": 1293.0,
+          "avg_belief_updates_per_player_game": 161.625,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        }
+      },
+      "artifact_paths": {
+        "summary": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_2\\compute_matched\\summary.json",
+        "matchups_csv": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_2\\compute_matched\\matchups.csv",
+        "belief_diagnostics": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_2\\compute_matched\\belief_diagnostics.json"
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_2_world_scaled",
+      "regime": "world_scaled",
+      "sims_per_move": 16,
+      "particle_worlds": 2,
+      "seeds": [
+        7200,
+        7201
+      ],
+      "games_per_matchup": 4,
+      "matchups": [
+        {
+          "setting_id": "sims_16_worlds_2_world_scaled",
+          "regime": "world_scaled",
+          "sims_per_move": 16,
+          "particle_worlds": 2,
+          "label": "frequency vs none",
+          "candidate_mode": "frequency",
+          "baseline_mode": "none",
+          "games": 4,
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "win_rate": 0.75,
+          "avg_final_vp": 7.75,
+          "avg_turns": 156,
+          "mean_latency_ms": 5.088080863269621,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        },
+        {
+          "setting_id": "sims_16_worlds_2_world_scaled",
+          "regime": "world_scaled",
+          "sims_per_move": 16,
+          "particle_worlds": 2,
+          "label": "particle vs none",
+          "candidate_mode": "particle",
+          "baseline_mode": "none",
+          "games": 4,
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "win_rate": 0.75,
+          "avg_final_vp": 8,
+          "avg_turns": 122.5,
+          "mean_latency_ms": 9.778129755642839,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 32,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        },
+        {
+          "setting_id": "sims_16_worlds_2_world_scaled",
+          "regime": "world_scaled",
+          "sims_per_move": 16,
+          "particle_worlds": 2,
+          "label": "particle vs frequency",
+          "candidate_mode": "particle",
+          "baseline_mode": "frequency",
+          "games": 4,
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "win_rate": 0.75,
+          "avg_final_vp": 6.75,
+          "avg_turns": 135,
+          "mean_latency_ms": 9.602639345055795,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 32,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 2,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        }
+      ],
+      "diagnostics": {
+        "none": {
+          "mode": "none",
+          "players_created": 8,
+          "decisions": 1448,
+          "worlds_attempted": 0,
+          "worlds_used": 0,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 0,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.0,
+          "active_belief_decisions_estimate": 0.0,
+          "avg_belief_updates_per_player_game": 0.0,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        },
+        "frequency": {
+          "mode": "frequency",
+          "players_created": 8,
+          "decisions": 1593,
+          "worlds_attempted": 652,
+          "worlds_used": 652,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 1,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.40929064657878217,
+          "active_belief_decisions_estimate": 652.0,
+          "avg_belief_updates_per_player_game": 81.5,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        },
+        "particle": {
+          "mode": "particle",
+          "players_created": 8,
+          "decisions": 1431,
+          "worlds_attempted": 1310,
+          "worlds_used": 1310,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 2,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.9154437456324249,
+          "active_belief_decisions_estimate": 655.0,
+          "avg_belief_updates_per_player_game": 81.875,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        }
+      },
+      "artifact_paths": {
+        "summary": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_2\\world_scaled\\summary.json",
+        "matchups_csv": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_2\\world_scaled\\matchups.csv",
+        "belief_diagnostics": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_2\\world_scaled\\belief_diagnostics.json"
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_4_compute_matched",
+      "regime": "compute_matched",
+      "sims_per_move": 16,
+      "particle_worlds": 4,
+      "seeds": [
+        7200,
+        7201
+      ],
+      "games_per_matchup": 4,
+      "matchups": [
+        {
+          "setting_id": "sims_16_worlds_4_compute_matched",
+          "regime": "compute_matched",
+          "sims_per_move": 16,
+          "particle_worlds": 4,
+          "label": "frequency vs none",
+          "candidate_mode": "frequency",
+          "baseline_mode": "none",
+          "games": 4,
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "win_rate": 0.75,
+          "avg_final_vp": 7.75,
+          "avg_turns": 156,
+          "mean_latency_ms": 4.776581615189106,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        },
+        {
+          "setting_id": "sims_16_worlds_4_compute_matched",
+          "regime": "compute_matched",
+          "sims_per_move": 16,
+          "particle_worlds": 4,
+          "label": "particle vs none",
+          "candidate_mode": "particle",
+          "baseline_mode": "none",
+          "games": 4,
+          "wins": 1,
+          "losses": 2,
+          "draws": 1,
+          "win_rate": 0.25,
+          "avg_final_vp": 4,
+          "avg_turns": 413.75,
+          "mean_latency_ms": 6.508464767340565,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        },
+        {
+          "setting_id": "sims_16_worlds_4_compute_matched",
+          "regime": "compute_matched",
+          "sims_per_move": 16,
+          "particle_worlds": 4,
+          "label": "particle vs frequency",
+          "candidate_mode": "particle",
+          "baseline_mode": "frequency",
+          "games": 4,
+          "wins": 1,
+          "losses": 2,
+          "draws": 1,
+          "win_rate": 0.25,
+          "avg_final_vp": 4.5,
+          "avg_turns": 408.75,
+          "mean_latency_ms": 5.5043753400440565,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        }
+      ],
+      "diagnostics": {
+        "none": {
+          "mode": "none",
+          "players_created": 8,
+          "decisions": 2810,
+          "worlds_attempted": 0,
+          "worlds_used": 0,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 0,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.0,
+          "active_belief_decisions_estimate": 0.0,
+          "avg_belief_updates_per_player_game": 0.0,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        },
+        "frequency": {
+          "mode": "frequency",
+          "players_created": 8,
+          "decisions": 2888,
+          "worlds_attempted": 1044,
+          "worlds_used": 1044,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 1,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.36149584487534625,
+          "active_belief_decisions_estimate": 1044.0,
+          "avg_belief_updates_per_player_game": 130.5,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        },
+        "particle": {
+          "mode": "particle",
+          "players_created": 8,
+          "decisions": 3955,
+          "worlds_attempted": 6356,
+          "worlds_used": 6356,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 4,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 1.607079646017699,
+          "active_belief_decisions_estimate": 1589.0,
+          "avg_belief_updates_per_player_game": 198.625,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        }
+      },
+      "artifact_paths": {
+        "summary": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_4\\compute_matched\\summary.json",
+        "matchups_csv": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_4\\compute_matched\\matchups.csv",
+        "belief_diagnostics": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_4\\compute_matched\\belief_diagnostics.json"
+      }
+    },
+    {
+      "setting_id": "sims_16_worlds_4_world_scaled",
+      "regime": "world_scaled",
+      "sims_per_move": 16,
+      "particle_worlds": 4,
+      "seeds": [
+        7200,
+        7201
+      ],
+      "games_per_matchup": 4,
+      "matchups": [
+        {
+          "setting_id": "sims_16_worlds_4_world_scaled",
+          "regime": "world_scaled",
+          "sims_per_move": 16,
+          "particle_worlds": 4,
+          "label": "frequency vs none",
+          "candidate_mode": "frequency",
+          "baseline_mode": "none",
+          "games": 4,
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "win_rate": 0.75,
+          "avg_final_vp": 7.75,
+          "avg_turns": 156,
+          "mean_latency_ms": 6.91107585470674,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        },
+        {
+          "setting_id": "sims_16_worlds_4_world_scaled",
+          "regime": "world_scaled",
+          "sims_per_move": 16,
+          "particle_worlds": 4,
+          "label": "particle vs none",
+          "candidate_mode": "particle",
+          "baseline_mode": "none",
+          "games": 4,
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "win_rate": 0.75,
+          "avg_final_vp": 8,
+          "avg_turns": 104.5,
+          "mean_latency_ms": 19.49596938470721,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 64,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        },
+        {
+          "setting_id": "sims_16_worlds_4_world_scaled",
+          "regime": "world_scaled",
+          "sims_per_move": 16,
+          "particle_worlds": 4,
+          "label": "particle vs frequency",
+          "candidate_mode": "particle",
+          "baseline_mode": "frequency",
+          "games": 4,
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "win_rate": 0.75,
+          "avg_final_vp": 7.75,
+          "avg_turns": 121,
+          "mean_latency_ms": 30.27928076968881,
+          "seed_info": {
+            "seeds": [
+              7200,
+              7201
+            ],
+            "swap_seats": true
+          },
+          "candidate_search_budget": {
+            "total_simulations": 64,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          },
+          "baseline_search_budget": {
+            "total_simulations": 16,
+            "max_depth": 8,
+            "exploration_c": 1.41,
+            "top_k_roads": 3,
+            "top_k_trades": 2,
+            "top_k_robber": 4,
+            "search_seed": 2026,
+            "particle_worlds": 4,
+            "max_invalid_samples": 20,
+            "enable_particle_devcards": true
+          }
+        }
+      ],
+      "diagnostics": {
+        "none": {
+          "mode": "none",
+          "players_created": 8,
+          "decisions": 1351,
+          "worlds_attempted": 0,
+          "worlds_used": 0,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 0,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.0,
+          "active_belief_decisions_estimate": 0.0,
+          "avg_belief_updates_per_player_game": 0.0,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        },
+        "frequency": {
+          "mode": "frequency",
+          "players_created": 8,
+          "decisions": 1511,
+          "worlds_attempted": 608,
+          "worlds_used": 608,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 1,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 0.40238252812706815,
+          "active_belief_decisions_estimate": 608.0,
+          "avg_belief_updates_per_player_game": 76.0,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        },
+        "particle": {
+          "mode": "particle",
+          "players_created": 8,
+          "decisions": 1222,
+          "worlds_attempted": 2200,
+          "worlds_used": 2200,
+          "invalid_samples": 0,
+          "fallbacks": 0,
+          "expected_worlds_per_decision": 4,
+          "rejection_rate": 0.0,
+          "avg_worlds_used_per_decision": 1.800327332242226,
+          "active_belief_decisions_estimate": 550.0,
+          "avg_belief_updates_per_player_game": 68.75,
+          "fallback_rate": 0.0,
+          "basic_consistency_ok": true
+        }
+      },
+      "artifact_paths": {
+        "summary": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_4\\world_scaled\\summary.json",
+        "matchups_csv": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_4\\world_scaled\\matchups.csv",
+        "belief_diagnostics": "experiments\\opponent_modeling_sweep\\medium\\sims_16\\worlds_4\\world_scaled\\belief_diagnostics.json"
+      }
+    }
+  ],
+  "belief_diagnostics": {
+    "sims_16_worlds_2_compute_matched": {
+      "none": {
+        "mode": "none",
+        "players_created": 8,
+        "decisions": 2653,
+        "worlds_attempted": 0,
+        "worlds_used": 0,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 0,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.0,
+        "active_belief_decisions_estimate": 0.0,
+        "avg_belief_updates_per_player_game": 0.0,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      },
+      "frequency": {
+        "mode": "frequency",
+        "players_created": 8,
+        "decisions": 2807,
+        "worlds_attempted": 965,
+        "worlds_used": 965,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 1,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.3437833986462415,
+        "active_belief_decisions_estimate": 965.0,
+        "avg_belief_updates_per_player_game": 120.625,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      },
+      "particle": {
+        "mode": "particle",
+        "players_created": 8,
+        "decisions": 3664,
+        "worlds_attempted": 2586,
+        "worlds_used": 2586,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 2,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.7057860262008734,
+        "active_belief_decisions_estimate": 1293.0,
+        "avg_belief_updates_per_player_game": 161.625,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      }
+    },
+    "sims_16_worlds_2_world_scaled": {
+      "none": {
+        "mode": "none",
+        "players_created": 8,
+        "decisions": 1448,
+        "worlds_attempted": 0,
+        "worlds_used": 0,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 0,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.0,
+        "active_belief_decisions_estimate": 0.0,
+        "avg_belief_updates_per_player_game": 0.0,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      },
+      "frequency": {
+        "mode": "frequency",
+        "players_created": 8,
+        "decisions": 1593,
+        "worlds_attempted": 652,
+        "worlds_used": 652,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 1,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.40929064657878217,
+        "active_belief_decisions_estimate": 652.0,
+        "avg_belief_updates_per_player_game": 81.5,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      },
+      "particle": {
+        "mode": "particle",
+        "players_created": 8,
+        "decisions": 1431,
+        "worlds_attempted": 1310,
+        "worlds_used": 1310,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 2,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.9154437456324249,
+        "active_belief_decisions_estimate": 655.0,
+        "avg_belief_updates_per_player_game": 81.875,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      }
+    },
+    "sims_16_worlds_4_compute_matched": {
+      "none": {
+        "mode": "none",
+        "players_created": 8,
+        "decisions": 2810,
+        "worlds_attempted": 0,
+        "worlds_used": 0,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 0,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.0,
+        "active_belief_decisions_estimate": 0.0,
+        "avg_belief_updates_per_player_game": 0.0,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      },
+      "frequency": {
+        "mode": "frequency",
+        "players_created": 8,
+        "decisions": 2888,
+        "worlds_attempted": 1044,
+        "worlds_used": 1044,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 1,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.36149584487534625,
+        "active_belief_decisions_estimate": 1044.0,
+        "avg_belief_updates_per_player_game": 130.5,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      },
+      "particle": {
+        "mode": "particle",
+        "players_created": 8,
+        "decisions": 3955,
+        "worlds_attempted": 6356,
+        "worlds_used": 6356,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 4,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 1.607079646017699,
+        "active_belief_decisions_estimate": 1589.0,
+        "avg_belief_updates_per_player_game": 198.625,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      }
+    },
+    "sims_16_worlds_4_world_scaled": {
+      "none": {
+        "mode": "none",
+        "players_created": 8,
+        "decisions": 1351,
+        "worlds_attempted": 0,
+        "worlds_used": 0,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 0,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.0,
+        "active_belief_decisions_estimate": 0.0,
+        "avg_belief_updates_per_player_game": 0.0,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      },
+      "frequency": {
+        "mode": "frequency",
+        "players_created": 8,
+        "decisions": 1511,
+        "worlds_attempted": 608,
+        "worlds_used": 608,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 1,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 0.40238252812706815,
+        "active_belief_decisions_estimate": 608.0,
+        "avg_belief_updates_per_player_game": 76.0,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      },
+      "particle": {
+        "mode": "particle",
+        "players_created": 8,
+        "decisions": 1222,
+        "worlds_attempted": 2200,
+        "worlds_used": 2200,
+        "invalid_samples": 0,
+        "fallbacks": 0,
+        "expected_worlds_per_decision": 4,
+        "rejection_rate": 0.0,
+        "avg_worlds_used_per_decision": 1.800327332242226,
+        "active_belief_decisions_estimate": 550.0,
+        "avg_belief_updates_per_player_game": 68.75,
+        "fallback_rate": 0.0,
+        "basic_consistency_ok": true
+      }
+    }
+  },
+  "recommendation": {
+    "primary": "keep_frequency",
+    "flags": [
+      "keep_frequency",
+      "keep_particle_world_scaled"
+    ],
+    "metrics": {
+      "frequency_vs_none_avg_win_rate": 0.75,
+      "particle_vs_none_compute_matched_avg_win_rate": 0.25,
+      "particle_vs_none_world_scaled_avg_win_rate": 0.75,
+      "particle_vs_frequency_compute_matched_avg_win_rate": 0.375,
+      "particle_vs_frequency_world_scaled_avg_win_rate": 0.75
+    }
+  },
+  "artifact_paths": {
+    "aggregate_summary": "experiments\\opponent_modeling_sweep\\medium\\aggregate_summary.json",
+    "matchups_csv": "experiments\\opponent_modeling_sweep\\medium\\matchups.csv",
+    "belief_diagnostics": "experiments\\opponent_modeling_sweep\\medium\\belief_diagnostics.json"
+  }
+}

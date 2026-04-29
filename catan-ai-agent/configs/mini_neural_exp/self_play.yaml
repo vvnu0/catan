@@ -1,0 +1,12 @@
+# Modest local self-play dataset, larger than audit smoke.
+num_games: 4
+output_dir: experiments/mini_neural_exp/data/self_play
+seed: 4242
+teacher_type: mcts
+max_simulations: 20
+max_depth: 8
+exploration_c: 1.41
+top_k_roads: 3
+top_k_trades: 2
+top_k_robber: 4
+shard_size: 512

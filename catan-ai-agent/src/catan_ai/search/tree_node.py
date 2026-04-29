@@ -66,6 +66,11 @@ class TreeNode:
             return self._unexpanded.pop(0)
         return None
 
+    def sort_unexpanded(self, key) -> None:
+        """Sort pending expansions in-place while preserving legality/filtering."""
+        if self._unexpanded is not None:
+            self._unexpanded.sort(key=key)
+
     @property
     def has_unexpanded(self) -> bool:
         return bool(self._unexpanded)

@@ -1,0 +1,126 @@
+{
+  "experiment_name": "opponent_modeling_ablation",
+  "modes_compared": [
+    "none",
+    "frequency",
+    "particle"
+  ],
+  "search_budget": {
+    "total_simulations": 12,
+    "max_depth": 8,
+    "exploration_c": 1.41,
+    "top_k_roads": 3,
+    "top_k_trades": 2,
+    "top_k_robber": 4,
+    "search_seed": 2026,
+    "particle_worlds": 3,
+    "max_invalid_samples": 20,
+    "enable_particle_devcards": true
+  },
+  "seeds": [
+    7000
+  ],
+  "games_per_matchup": 2,
+  "swap_seats": true,
+  "elapsed_sec": 19.117191099969205,
+  "eval_matchups": [
+    {
+      "label": "frequency vs none",
+      "candidate_mode": "frequency",
+      "baseline_mode": "none",
+      "games": 2,
+      "wins": 1,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.5,
+      "avg_final_vp": 8,
+      "avg_turns": 231,
+      "mean_latency_ms": 3.110199508540365,
+      "seed_info": {
+        "seeds": [
+          7000
+        ],
+        "swap_seats": true
+      },
+      "search_budget": {
+        "total_simulations": 12,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 3,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "label": "particle vs none",
+      "candidate_mode": "particle",
+      "baseline_mode": "none",
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "win_rate": 0.0,
+      "avg_final_vp": 3,
+      "avg_turns": 459.5,
+      "mean_latency_ms": 3.310492065799438,
+      "seed_info": {
+        "seeds": [
+          7000
+        ],
+        "swap_seats": true
+      },
+      "search_budget": {
+        "total_simulations": 12,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 3,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    },
+    {
+      "label": "particle vs frequency",
+      "candidate_mode": "particle",
+      "baseline_mode": "frequency",
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "win_rate": 0.0,
+      "avg_final_vp": 3.5,
+      "avg_turns": 526.5,
+      "mean_latency_ms": 3.8644127714349894,
+      "seed_info": {
+        "seeds": [
+          7000
+        ],
+        "swap_seats": true
+      },
+      "search_budget": {
+        "total_simulations": 12,
+        "max_depth": 8,
+        "exploration_c": 1.41,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4,
+        "search_seed": 2026,
+        "particle_worlds": 3,
+        "max_invalid_samples": 20,
+        "enable_particle_devcards": true
+      }
+    }
+  ],
+  "artifact_paths": {
+    "summary_path": "experiments\\opponent_modeling_ablation\\summary.json",
+    "matchups_csv": "experiments\\opponent_modeling_ablation\\matchups.csv",
+    "belief_diagnostics": "experiments\\opponent_modeling_ablation\\belief_diagnostics.json"
+  }
+}

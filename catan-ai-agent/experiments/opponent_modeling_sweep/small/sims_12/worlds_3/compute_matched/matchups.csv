@@ -1,0 +1,4 @@
+setting_id,regime,sims_per_move,particle_worlds,label,candidate_mode,baseline_mode,games,wins,losses,draws,win_rate,avg_final_vp,avg_turns,mean_latency_ms,seeds,candidate_total_simulations,baseline_total_simulations
+sims_12_worlds_3_compute_matched,compute_matched,12,3,frequency vs none,frequency,none,2,2,0,0,1.0,9,174,3.6296287433676064,7100,12,12
+sims_12_worlds_3_compute_matched,compute_matched,12,3,particle vs none,particle,none,2,1,1,0,0.5,5,198.5,3.7516932549831283,7100,12,12
+sims_12_worlds_3_compute_matched,compute_matched,12,3,particle vs frequency,particle,frequency,2,1,1,0,0.5,6,148.5,4.1232872203393125,7100,12,12

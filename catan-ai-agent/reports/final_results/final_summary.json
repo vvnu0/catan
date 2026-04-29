@@ -1,0 +1,43 @@
+{
+  "chosen_main_bot": "frequency belief MCTS",
+  "chosen_reference_bot": "plain MCTS",
+  "opponent_modeling_conclusion": "Frequency belief MCTS is the default final setting; frequency-vs-none average win rate=0.750. Particle compute-matched is not a main setting; world-scaled particle is appendix-only (particle-vs-none average win rate=0.750).",
+  "neural_conclusion": "Neural guidance is kept as a secondary/negative-result track; mean win rate vs frequency MCTS=0.000, top-1 match=0.451, flat-policy fraction=0.768.",
+  "human_eval_status": {
+    "status": "dry_run_only",
+    "participants": 1,
+    "games_completed": 2,
+    "main_bot_win_rate": 1.0,
+    "reference_bot_win_rate": 0.0,
+    "missing_or_incomplete_sessions": [],
+    "note": "Only dry-run/fixture human-eval sessions are present; do not claim real participant results yet."
+  },
+  "main_headline_metrics": {
+    "frequency_vs_none_win_rate": 0.75,
+    "particle_world_scaled_vs_none_win_rate": 0.75,
+    "neural_vs_frequency_win_rate": 0.0,
+    "human_main_bot_win_rate": null,
+    "human_reference_bot_win_rate": null
+  },
+  "key_artifact_paths": {
+    "final_summary": "reports\\final_results\\final_summary.json",
+    "main_results_table": "reports\\final_results\\main_results_table.csv",
+    "appendix_results_table": "reports\\final_results\\appendix_results_table.csv",
+    "final_results_markdown": "reports\\final_results\\FINAL_RESULTS.md",
+    "submission_checklist": "reports\\final_results\\SUBMISSION_CHECKLIST.md",
+    "opponent_sweep_medium": "experiments\\opponent_modeling_sweep\\medium\\aggregate_summary.json",
+    "neural_scaling_medium": "experiments\\neural_scaling_study\\medium\\aggregate_summary.json",
+    "human_eval_summary": "experiments\\human_eval\\aggregate_summary.json",
+    "mini_neural_summary": "experiments\\mini_neural_exp\\summary.json",
+    "neural_audit": "reports\\neural_phase_audit.md"
+  },
+  "source_artifact_presence": {
+    "opponent_sweep_medium": true,
+    "opponent_sweep_small": true,
+    "neural_scaling_medium": true,
+    "neural_scaling_small": true,
+    "human_eval": true,
+    "mini_neural": true,
+    "opponent_ablation": true
+  }
+}

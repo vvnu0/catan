@@ -97,6 +97,7 @@ class NeuralMCTS:
         root = TreeNode(game.copy(), depth=0)
         root.init_unexpanded(self.filter)
         self._compute_priors(root)
+        self._order_unexpanded_by_priors(root)
 
         t0 = time.perf_counter()
         max_depth_seen = 0
@@ -143,6 +144,7 @@ class NeuralMCTS:
                     if child.depth < cfg.max_depth and not child.is_terminal:
                         child.init_unexpanded(self.filter)
                         self._compute_priors(child)
+                        self._order_unexpanded_by_priors(child)
 
                     node = child
 
@@ -254,6 +256,19 @@ class NeuralMCTS:
             prior_map[ea] = probs[i].item()
 
         self._priors[id(node)] = prior_map
+
+    def _order_unexpanded_by_priors(self, node: TreeNode) -> None:
+        """Prioritize first expansion by model policy, with stable tie-breaks."""
+        if not self.cfg.use_model_priors:
+            return
+
+        priors = self._priors.get(id(node))
+        if not priors:
+            return
+
+        node.sort_unexpanded(
+            key=lambda ea: (-priors.get(ea, 0.0), ActionCodec.sort_key(ea))
+        )
 
     # ------------------------------------------------------------------
     # Leaf evaluation — neural and/or heuristic

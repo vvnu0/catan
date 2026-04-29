@@ -16,6 +16,7 @@ from typing import Callable
 
 from catanatron import Color, Game
 from catanatron.models.player import Player
+from catanatron.state_functions import get_visible_victory_points
 
 log = logging.getLogger(__name__)
 
@@ -31,6 +32,7 @@ class MatchResult:
     draws: int = 0
     turn_counts: list[int] = field(default_factory=list)
     move_times: list[float] = field(default_factory=list)
+    final_vps: list[int] = field(default_factory=list)
 
     @property
     def win_rate(self) -> float:
@@ -44,10 +46,15 @@ class MatchResult:
     def avg_move_ms(self) -> float:
         return statistics.mean(self.move_times) if self.move_times else 0.0
 
+    @property
+    def avg_final_vp(self) -> float:
+        return statistics.mean(self.final_vps) if self.final_vps else 0.0
+
     def summary(self) -> str:
         return (
             f"{self.label}: {self.wins}W / {self.losses}L / {self.draws}D "
             f"(win rate {self.win_rate:.0%}, "
+            f"avg VP {self.avg_final_vp:.1f}, "
             f"avg turns {self.avg_turns:.1f}, "
             f"avg move {self.avg_move_ms:.1f} ms)"
         )
@@ -129,6 +136,7 @@ class Arena:
             result.losses += 1
 
         result.turn_counts.append(game.state.num_turns)
+        result.final_vps.append(get_visible_victory_points(game.state, cand_color))
 
         if hasattr(candidate, "avg_move_ms"):
             result.move_times.append(candidate.avg_move_ms)

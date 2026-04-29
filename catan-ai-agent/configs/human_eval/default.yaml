@@ -1,0 +1,18 @@
+main_bot: frequency
+reference_bot: mcts
+games_per_participant_main: 1
+games_per_participant_reference: 1
+seeds: [9100, 9101, 9102, 9103]
+swap_order: true
+output_dir: experiments/human_eval
+survey_fields: [participant_id, skill_group, game_id, bot_faced, seed, winner, final_vp, turns, moves_felt_sensible, gameplay_felt_fair, challenge_level, comments]
+
+# Bot settings for operator notes and reproducibility.
+main_bot_sims_per_world: 16
+main_bot_num_worlds: 1
+main_bot_belief_mode: count_only
+reference_mcts_simulations: 16
+max_depth: 8
+top_k_roads: 3
+top_k_trades: 2
+top_k_robber: 4

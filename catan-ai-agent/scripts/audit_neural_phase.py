@@ -530,7 +530,14 @@ def step6_raw_leakage() -> SectionResult:
 
 def _prepare_fixed_state(seed: int = 777, ticks: int = 45):
     game = Game([RandomPlayer(Color.RED), RandomPlayer(Color.BLUE)], seed=seed)
-    for _ in range(ticks):
+    cfilter = CandidateFilter(top_k_roads=3, top_k_trades=2, top_k_robber=4)
+
+    for tick in range(250):
+        if tick >= ticks and game.winning_color() is None:
+            acting = game.state.current_color()
+            ctx = DecisionContext(game, game.playable_actions, acting)
+            if len(cfilter(ctx.public_state, ctx.encoded_actions)) > 1:
+                break
         if game.winning_color() is not None:
             break
         game.play_tick()
@@ -596,13 +603,25 @@ def _run_fixed_state_compare(trained_model: PolicyValueNet, seed: int, ticks: in
     def top5(stats: dict[str, Any]) -> list[str]:
         return [k for k in list(stats["root_children"].keys())[:5]]
 
+    def visit_distribution(stats: dict[str, Any]) -> dict[str, int]:
+        return {
+            k: int(v["visits"])
+            for k, v in sorted(stats["root_children"].items())
+        }
+
+    root_ranking_changed = top5(off_stats) != top5(on_stats)
+    root_visits_changed = visit_distribution(off_stats) != visit_distribution(on_stats)
+
     return {
         "seed": seed,
         "ticks": ticks,
+        "actual_turns": game.state.num_turns,
         "acting_color": acting.value,
         "legal_ok": plain_raw in playable and off_raw in playable and on_raw in playable,
         "off_matches_plain": ActionCodec.decode_to_str(plain_ea) == ActionCodec.decode_to_str(off_ea),
-        "ranking_changed_with_model": top5(off_stats) != top5(on_stats),
+        "ranking_changed_with_model": root_ranking_changed,
+        "visit_distribution_changed_with_model": root_visits_changed,
+        "ranking_or_visits_changed_with_model": root_ranking_changed or root_visits_changed,
         "model_active": any(v.get("prior", 0.0) > 0 for v in on_stats["root_children"].values()),
         "plain": {
             "chosen_encoded_action": ActionCodec.decode_to_str(plain_ea),
@@ -647,8 +666,8 @@ def step7_neural_mcts_fixed_state(trained_model: PolicyValueNet) -> SectionResul
         ),
     ))
 
-    changed = any(c["ranking_changed_with_model"] for c in comparisons)
-    checks.append(_pass("Enabling priors/value changes root ranking on fixed state", changed))
+    changed = any(c["ranking_or_visits_changed_with_model"] for c in comparisons)
+    checks.append(_pass("Enabling priors/value changes root ranking or visit distribution on fixed state", changed))
     checks.append(_pass("Model is actively used in search (non-empty priors recorded)", all(c["model_active"] for c in comparisons)))
 
     details = {"fixed_state_comparisons": comparisons}
@@ -818,6 +837,8 @@ def build_markdown(results: list[SectionResult]) -> str:
     lines.append("")
     lines.append("- Added audit runner `scripts/audit_neural_phase.py` and generated audit reports.")
     lines.append("- Fixed product bug in `src/catan_ai/training/self_play.py`: unsupported `teacher_type` is now rejected explicitly (no silent ignore).")
+    lines.append("- Fixed NeuralMCTS prior influence: model priors now order unexpanded actions before progressive widening expansion.")
+    lines.append("- Updated fixed-state audit probes to require branchable root states and check ranking or visit-distribution changes.")
     lines.append("")
 
     overall_ok = all(r.status == "PASS" for r in results)

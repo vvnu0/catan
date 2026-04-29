@@ -1,0 +1,5 @@
+family,experiment,comparison,regime,games,win_rate,avg_final_vp,avg_turns,metric,value,artifact_path,notes
+opponent_modeling,opponent_modeling_sweep,frequency vs none,compute_matched,4,0.75,7.75,156,win_rate,0.75,experiments/opponent_modeling_sweep/medium/aggregate_summary.json,Main technical result: frequency belief MCTS selected as final bot.
+opponent_modeling,opponent_modeling_sweep,frequency vs none,world_scaled,4,0.75,7.75,156,win_rate,0.75,experiments/opponent_modeling_sweep/medium/aggregate_summary.json,Main technical result: frequency belief MCTS selected as final bot.
+opponent_modeling,opponent_modeling_sweep,frequency vs none,compute_matched,4,0.75,7.75,156,win_rate,0.75,experiments/opponent_modeling_sweep/medium/aggregate_summary.json,Main technical result: frequency belief MCTS selected as final bot.
+opponent_modeling,opponent_modeling_sweep,frequency vs none,world_scaled,4,0.75,7.75,156,win_rate,0.75,experiments/opponent_modeling_sweep/medium/aggregate_summary.json,Main technical result: frequency belief MCTS selected as final bot.

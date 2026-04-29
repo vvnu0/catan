@@ -1,0 +1,103 @@
+{
+  "seed": 8100,
+  "belief_mode": "frequency",
+  "self_play_games": 2,
+  "self_play_samples": 659,
+  "checkpoint_path": "experiments\\neural_scaling_study\\small\\seed_8100\\checkpoints\\best.pt",
+  "checkpoint_epoch": 2,
+  "checkpoint_metrics": {
+    "train_policy": 1.999595010280609,
+    "train_value": 0.24452133029699324,
+    "val_policy": 2.494557738304138,
+    "val_value": 0.005969351179373916,
+    "val_total": 2.500527089483512
+  },
+  "diagnostics": {
+    "self_play_sample_count": 659,
+    "diagnostic_sample_count": 128,
+    "checkpoint_epoch": 2,
+    "checkpoint_metrics": {
+      "train_policy": 1.999595010280609,
+      "train_value": 0.24452133029699324,
+      "val_policy": 2.494557738304138,
+      "val_value": 0.005969351179373916,
+      "val_total": 2.500527089483512
+    },
+    "mean_policy_entropy": 1.9862841037102044,
+    "mean_normalized_policy_entropy": 0.9455731725504666,
+    "flat_policy_fraction": 0.625,
+    "nonflat_policy_fraction": 0.375,
+    "mean_max_policy_probability": 0.3042589839460561,
+    "top1_match_rate": 0.453125,
+    "value_mae": 0.2797280242666602,
+    "value_mse": 0.19998338939542748,
+    "train_loss_history": [
+      {
+        "epoch": 1,
+        "train_policy": 2.087283563613892,
+        "train_value": 0.4653329461812973,
+        "val_policy": 2.554650068283081,
+        "val_value": 0.0213450534211006,
+        "val_total": 2.5759951217041817
+      },
+      {
+        "epoch": 2,
+        "train_policy": 1.999595010280609,
+        "train_value": 0.24452133029699324,
+        "val_policy": 2.494557738304138,
+        "val_value": 0.005969351179373916,
+        "val_total": 2.500527089483512
+      }
+    ]
+  },
+  "eval_matchups": [
+    {
+      "seed": 8100,
+      "label": "frequency_mcts vs frequency_mcts",
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "win_rate": 0.0,
+      "avg_final_vp": 4,
+      "avg_turns": 249.5,
+      "mean_latency_ms": 2.723813513127509,
+      "belief_mode": "frequency",
+      "search_budget": {
+        "eval_sims": 12,
+        "eval_depth": 6,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4
+      }
+    },
+    {
+      "seed": 8100,
+      "label": "neural_frequency_mcts vs frequency_mcts",
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "win_rate": 0.0,
+      "avg_final_vp": 2,
+      "avg_turns": 238.5,
+      "mean_latency_ms": 7.24290431450321,
+      "belief_mode": "frequency",
+      "search_budget": {
+        "eval_sims": 12,
+        "eval_depth": 6,
+        "top_k_roads": 3,
+        "top_k_trades": 2,
+        "top_k_robber": 4
+      }
+    }
+  ],
+  "artifact_paths": {
+    "seed_dir": "experiments\\neural_scaling_study\\small\\seed_8100",
+    "dataset_dir": "experiments\\neural_scaling_study\\small\\seed_8100\\data\\self_play",
+    "checkpoint_path": "experiments\\neural_scaling_study\\small\\seed_8100\\checkpoints\\best.pt",
+    "summary": "experiments\\neural_scaling_study\\small\\seed_8100\\summary.json",
+    "matchups_csv": "experiments\\neural_scaling_study\\small\\seed_8100\\matchups.csv",
+    "diagnostics": "experiments\\neural_scaling_study\\small\\seed_8100\\diagnostics.json"
+  }
+}

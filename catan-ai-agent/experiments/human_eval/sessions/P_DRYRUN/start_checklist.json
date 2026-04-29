@@ -1,0 +1,41 @@
+{
+  "participant_id": "P_DRYRUN",
+  "skill_group": "B",
+  "status": "ready",
+  "instructions": [
+    "Open the local Catan play environment manually.",
+    "For each game, configure the listed bot, seed, and human color.",
+    "After each game, fill the result and survey fields in the finalization input.",
+    "Do not reveal whether a game is main or reference until after the session if blinding is desired."
+  ],
+  "games": [
+    {
+      "game_id": "P_DRYRUN_game_01",
+      "bot_faced": "frequency",
+      "bot_role": "main",
+      "seed": 9100,
+      "human_color": "RED",
+      "bot_color": "BLUE",
+      "operator_checklist": [
+        "Set game seed to 9100",
+        "Seat participant as RED",
+        "Seat bot as BLUE using frequency",
+        "Save or note any replay/log path before moving to the next game"
+      ]
+    },
+    {
+      "game_id": "P_DRYRUN_game_02",
+      "bot_faced": "mcts",
+      "bot_role": "reference",
+      "seed": 9101,
+      "human_color": "BLUE",
+      "bot_color": "RED",
+      "operator_checklist": [
+        "Set game seed to 9101",
+        "Seat participant as BLUE",
+        "Seat bot as RED using mcts",
+        "Save or note any replay/log path before moving to the next game"
+      ]
+    }
+  ]
+}

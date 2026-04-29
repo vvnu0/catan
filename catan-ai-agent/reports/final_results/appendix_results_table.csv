@@ -1,0 +1,11 @@
+family,experiment,comparison,regime,games,win_rate,avg_final_vp,avg_turns,metric,value,artifact_path,notes
+particle_appendix,opponent_modeling_sweep,particle vs none,world_scaled,4,0.75,8,122.5,win_rate,0.75,experiments/opponent_modeling_sweep/medium/aggregate_summary.json,Appendix particle setting; not the default final bot.
+particle_appendix,opponent_modeling_sweep,particle vs frequency,world_scaled,4,0.75,6.75,135,win_rate,0.75,experiments/opponent_modeling_sweep/medium/aggregate_summary.json,Appendix particle setting; not the default final bot.
+particle_appendix,opponent_modeling_sweep,particle vs none,world_scaled,4,0.75,8,104.5,win_rate,0.75,experiments/opponent_modeling_sweep/medium/aggregate_summary.json,Appendix particle setting; not the default final bot.
+particle_appendix,opponent_modeling_sweep,particle vs frequency,world_scaled,4,0.75,7.75,121,win_rate,0.75,experiments/opponent_modeling_sweep/medium/aggregate_summary.json,Appendix particle setting; not the default final bot.
+neural_scaling,neural_scaling_medium,neural_frequency_mcts vs frequency_mcts,,,0.0,,,win_rate_vs_frequency_mcts,0.0,experiments/neural_scaling_study/medium/aggregate_summary.json,Secondary/negative-result learning track.
+neural_scaling,neural_scaling_medium,neural_frequency_mcts vs frequency_mcts,,,,,,flat_policy_fraction,0.767578125,experiments/neural_scaling_study/medium/aggregate_summary.json,Secondary/negative-result learning track.
+neural_scaling,neural_scaling_medium,neural_frequency_mcts vs frequency_mcts,,,,,,top1_match_rate,0.451171875,experiments/neural_scaling_study/medium/aggregate_summary.json,Secondary/negative-result learning track.
+neural_scaling,neural_scaling_medium,neural_frequency_mcts vs frequency_mcts,,,,,,value_mae,0.7449330682866275,experiments/neural_scaling_study/medium/aggregate_summary.json,Secondary/negative-result learning track.
+mini_neural,mini_neural_exp,NeuralMCTS checkpoint vs MCTS,,4,0.5,7.5,214.25,win_rate,0.5,experiments/mini_neural_exp/summary.json,Earlier mini neural checkpoint benchmark.
+mini_neural,mini_neural_exp,NeuralMCTS checkpoint vs HeuristicBot,,4,0.25,4.75,136,win_rate,0.25,experiments/mini_neural_exp/summary.json,Earlier mini neural checkpoint benchmark.

@@ -1,0 +1,12 @@
+preset: medium
+output_dir: experiments/opponent_modeling_sweep/medium
+seeds: [7200, 7201]
+games_per_matchup: 4
+sims_per_move: [16]
+particle_world_counts: [2, 4]
+max_depth: 8
+search_seed: 2026
+top_k_roads: 3
+top_k_trades: 2
+top_k_robber: 4
+enable_particle_devcards: true
