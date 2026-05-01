@@ -16,6 +16,7 @@ from catanatron.web.mcts_analysis import GameAnalyzer
 
 bp = Blueprint("api", __name__, url_prefix="/api")
 VALID_MAP_TEMPLATES = {"BASE", "MINI", "TOURNAMENT"}
+CUSTOM_BOT_KEYS = {"MAIN_BOT", "REFERENCE_BOT"}
 
 
 def player_factory(player_key):
@@ -27,8 +28,32 @@ def player_factory(player_key):
         return RandomPlayer(player_key[1])
     elif player_key[0] == "HUMAN":
         return ValueFunctionPlayer(player_key[1], is_bot=False)
+    elif player_key[0] in CUSTOM_BOT_KEYS:
+        return custom_player_factory(player_key)
     else:
         raise ValueError("Invalid player key")
+
+
+def custom_player_factory(player_key):
+    try:
+        from catan_ai.eval.opponent_modeling import (
+            OpponentModelEvalConfig,
+            OpponentModelMode,
+            make_opponent_model_player,
+        )
+    except ImportError as exc:
+        raise ValueError(
+            "Custom catan-ai-agent bots require catan-ai-agent on PYTHONPATH "
+            "or installed editable. From catanatron, use: "
+            "python -m pip install -e ../catan-ai-agent"
+        ) from exc
+
+    cfg = OpponentModelEvalConfig(total_simulations=16, max_depth=8, search_seed=2026)
+    if player_key[0] == "MAIN_BOT":
+        return make_opponent_model_player(OpponentModelMode.FREQUENCY, player_key[1], cfg)
+    if player_key[0] == "REFERENCE_BOT":
+        return make_opponent_model_player(OpponentModelMode.NONE, player_key[1], cfg)
+    raise ValueError("Invalid custom player key")
 
 
 @bp.route("/games", methods=("POST",))
@@ -59,11 +84,16 @@ def post_game_endpoint():
     if not isinstance(friendly_robber, bool):
         abort(400, description="'friendly_robber' must be a boolean")
 
+    seed = request.json.get("seed")
+    if seed is not None and not isinstance(seed, int):
+        abort(400, description="'seed' must be an integer when provided")
+
     players = list(map(player_factory, zip(player_keys, Color)))
     catan_map = build_map(map_template)
 
     game = Game(
         players=players,
+        seed=seed,
         discard_limit=discard_limit,
         friendly_robber=friendly_robber,
         vps_to_win=vps_to_win,

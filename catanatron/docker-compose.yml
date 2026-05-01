@@ -25,12 +25,14 @@ services:
     environment:
       - DATABASE_URL=postgresql://catanatron:victorypoint@db:5432/catanatron_db
       - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/catan-ai-agent/src
     ports:
       - 5001:5001
     stdin_open: true
     restart: always
     volumes:
       - .:/app
+      - ../catan-ai-agent:/catan-ai-agent
     depends_on:
       db:
         condition: service_healthy

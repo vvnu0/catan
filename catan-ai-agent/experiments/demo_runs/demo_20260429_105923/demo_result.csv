@@ -1,0 +1,2 @@
+matchup,label,games,wins,losses,draws,win_rate,avg_final_vp,avg_turns,mean_latency_ms
+main_vs_reference,frequency_mcts vs plain_mcts demo,2,1,1,0,0.5,6,129.5,2.932091516132733

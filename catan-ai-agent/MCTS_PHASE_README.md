@@ -458,6 +458,61 @@ Read `reports/final_results/FINAL_RESULTS.md` first for the writeup narrative, t
 
 ---
 
+## Demo and session operation
+
+Run preflight before a demo or participant session:
+```powershell
+python scripts/demo_preflight.py
+```
+
+Dry-run the canonical demo:
+```powershell
+python scripts/run_final_demo.py --dry-run
+```
+
+Run the canonical final demo:
+```powershell
+python scripts/run_final_demo.py
+```
+
+Check human session status:
+```powershell
+python scripts/check_human_eval_status.py
+```
+
+Operator runbook:
+- `reports/DEMO_RUNBOOK.md`
+
+Browser visual integration:
+```powershell
+cd ..\catanatron
+docker compose up --build
+```
+
+Then open `http://localhost:3000`. The Catanatron create-game UI includes `Main Bot (Frequency MCTS)` and `Reference Bot (Plain MCTS)`.
+
+Create a browser-inspectable custom bot replay:
+```powershell
+cd ..\catan-ai-agent
+python scripts/run_visual_match.py --matchup main_vs_reference
+```
+
+Create a human-vs-main-bot browser game:
+```powershell
+python scripts/run_browser_human_vs_bot.py --bot MAIN_BOT --human-color RED
+```
+
+Artifacts:
+- `reports/final_results/demo_preflight.json`
+- `experiments/demo_runs/<demo_timestamp>/demo_manifest.json`
+- `experiments/demo_runs/<demo_timestamp>/demo_result.json`
+- `experiments/demo_runs/<demo_timestamp>/demo_summary.md`
+- `experiments/visual_matches/<timestamp>/visual_match_summary.json`
+- `experiments/browser_sessions/human_vs_bot_plan.json`
+- `experiments/human_eval/session_status.json`
+
+---
+
 ## Practical interpretation
 
 As of this update:

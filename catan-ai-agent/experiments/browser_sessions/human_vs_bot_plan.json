@@ -1,0 +1,24 @@
+{
+  "status": "dry_run",
+  "api_url": "http://localhost:5001",
+  "ui_url": "http://localhost:3000",
+  "bot": "MAIN_BOT",
+  "human_color": "RED",
+  "seed": 9910,
+  "request_payload": {
+    "players": [
+      "HUMAN",
+      "MAIN_BOT"
+    ],
+    "map_template": "BASE",
+    "vps_to_win": 10,
+    "discard_limit": 7,
+    "friendly_robber": false,
+    "seed": 9910
+  },
+  "manual_ui_flow": [
+    "Open http://localhost:3000",
+    "Set one player to Human and the other to MAIN_BOT",
+    "Use seed 9910 via this script for reproducibility if launching through API"
+  ]
+}

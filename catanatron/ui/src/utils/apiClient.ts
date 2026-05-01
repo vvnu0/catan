@@ -7,7 +7,9 @@ export type PlayerArchetype =
   | "HUMAN"
   | "RANDOM"
   | "CATANATRON"
-  | "WEIGHTED_RANDOM";
+  | "WEIGHTED_RANDOM"
+  | "MAIN_BOT"
+  | "REFERENCE_BOT";
 export type MapTemplate = "BASE" | "MINI" | "TOURNAMENT";
 export type StateIndex = number | `${number}` | "latest";
 
@@ -17,6 +19,7 @@ type CreateGameOptions = {
   vpsToWin: number;
   discardLimit: number;
   friendlyRobber: boolean;
+  seed?: number;
 };
 
 export async function createGame({
@@ -25,6 +28,7 @@ export async function createGame({
   vpsToWin,
   discardLimit,
   friendlyRobber,
+  seed,
 }: CreateGameOptions) {
   const response = await axios.post(API_URL + "/api/games", {
     players,
@@ -32,6 +36,7 @@ export async function createGame({
     vps_to_win: vpsToWin,
     discard_limit: discardLimit,
     friendly_robber: friendlyRobber,
+    seed,
   });
   return response.data.game_id;
 }

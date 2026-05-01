@@ -83,6 +83,24 @@ We provide Docker images so that you can watch, inspect, and play games against 
 
 3. Visit http://localhost:3000 in your browser!
 
+### Local custom catan-ai-agent bots
+
+For local demos in this workspace, the web create-game flow also supports:
+
+- `MAIN_BOT`: frequency belief MCTS from `../catan-ai-agent`
+- `REFERENCE_BOT`: plain MCTS from `../catan-ai-agent`
+
+The provided `docker-compose.yml` mounts `../catan-ai-agent` into the server container and sets `PYTHONPATH=/catan-ai-agent/src`. If running the Flask backend outside Docker, install both repos editable from the same Python environment:
+
+```bash
+cd ../catanatron
+pip install -e ".[web]"
+cd ../catan-ai-agent
+pip install -e .
+```
+
+Then start the Catanatron web UI and choose `Main Bot (Frequency MCTS)` or `Reference Bot (Plain MCTS)` from the player dropdown.
+
 ## Python Library
 
 You can also use `catanatron` package directly which provides a core

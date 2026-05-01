@@ -1,13 +1,7 @@
 {
   "participant_id": "P_DRYRUN",
   "skill_group": "B",
-  "status": "ready",
-  "instructions": [
-    "Open the local Catan play environment manually.",
-    "For each game, configure the listed bot, seed, and human color.",
-    "After each game, fill the result and survey fields in the finalization input.",
-    "Do not reveal whether a game is main or reference until after the session if blinding is desired."
-  ],
+  "session_dir": "experiments\\human_eval\\sessions\\P_DRYRUN",
   "games": [
     {
       "participant_id": "P_DRYRUN",

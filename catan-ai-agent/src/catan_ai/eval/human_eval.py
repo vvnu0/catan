@@ -71,6 +71,8 @@ def prepare_session(
 def start_session(manifest_path: str | Path) -> dict[str, Any]:
     """Return a printable operator checklist for a manifest."""
     manifest = read_json(manifest_path)
+    session_dir = Path(manifest["session_dir"])
+    commands = _session_commands(manifest)
     checklist = {
         "participant_id": manifest["participant_id"],
         "skill_group": manifest["skill_group"],
@@ -81,26 +83,15 @@ def start_session(manifest_path: str | Path) -> dict[str, Any]:
             "After each game, fill the result and survey fields in the finalization input.",
             "Do not reveal whether a game is main or reference until after the session if blinding is desired.",
         ],
-        "games": [
-            {
-                "game_id": game["game_id"],
-                "bot_faced": game["bot_faced"],
-                "bot_role": game["bot_role"],
-                "seed": game["seed"],
-                "human_color": game["human_color"],
-                "bot_color": game["bot_color"],
-                "operator_checklist": [
-                    f"Set game seed to {game['seed']}",
-                    f"Seat participant as {game['human_color']}",
-                    f"Seat bot as {game['bot_color']} using {game['bot_faced']}",
-                    "Save or note any replay/log path before moving to the next game",
-                ],
-            }
-            for game in manifest["games"]
-        ],
+        "games": commands["games"],
+        "artifact_paths": commands["artifact_paths"],
     }
-    session_dir = Path(manifest["session_dir"])
     write_json(session_dir / "start_checklist.json", checklist)
+    write_json(session_dir / "session_commands.json", commands)
+    (session_dir / "session_commands.md").write_text(
+        _session_commands_markdown(commands),
+        encoding="utf-8",
+    )
     return checklist
 
 
@@ -231,6 +222,93 @@ def make_dry_run_records(manifest: dict[str, Any]) -> tuple[list[dict[str, Any]]
             "comments": "dry-run response",
         })
     return results, surveys
+
+
+def _session_commands(manifest: dict[str, Any]) -> dict[str, Any]:
+    session_dir = Path(manifest["session_dir"])
+    games = []
+    for game in manifest["games"]:
+        result_path = session_dir / f"{game['game_id']}_result.json"
+        survey_path = session_dir / f"{game['game_id']}_survey.json"
+        games.append({
+            "participant_id": manifest["participant_id"],
+            "skill_group": manifest["skill_group"],
+            "game_id": game["game_id"],
+            "bot_faced": game["bot_faced"],
+            "bot_role": game["bot_role"],
+            "seed": game["seed"],
+            "human_color": game["human_color"],
+            "bot_color": game["bot_color"],
+            "recommended_operator_action": (
+                f"Start a local Catan game with seed {game['seed']}; "
+                f"participant={game['human_color']}; "
+                f"bot={game['bot_color']} using {game['bot_faced']}."
+            ),
+            "expected_result_file": str(result_path),
+            "expected_survey_file": str(survey_path),
+            "completion_checklist": [
+                "Game completed or failure reason recorded",
+                "Winner recorded as human, bot, or draw",
+                "Human and bot final VP recorded",
+                "Turns recorded if available",
+                "Survey ratings recorded for this game",
+                "Replay/log path recorded if available",
+            ],
+            "finalize_command_after_all_games": (
+                "python scripts/finalize_human_eval_session.py "
+                f"--manifest {session_dir / 'manifest.json'} "
+                f"--results-json {session_dir / 'results.json'} "
+                f"--surveys-json {session_dir / 'surveys.json'}"
+            ),
+        })
+    return {
+        "participant_id": manifest["participant_id"],
+        "skill_group": manifest["skill_group"],
+        "session_dir": str(session_dir),
+        "games": games,
+        "artifact_paths": {
+            "manifest": str(session_dir / "manifest.json"),
+            "start_checklist": str(session_dir / "start_checklist.json"),
+            "session_commands_json": str(session_dir / "session_commands.json"),
+            "session_commands_md": str(session_dir / "session_commands.md"),
+            "combined_results_json": str(session_dir / "results.json"),
+            "combined_surveys_json": str(session_dir / "surveys.json"),
+            "completed_session": str(session_dir / "completed_session.json"),
+        },
+    }
+
+
+def _session_commands_markdown(commands: dict[str, Any]) -> str:
+    lines = [
+        f"# Human Eval Session Commands: {commands['participant_id']}",
+        "",
+        f"- Skill group: `{commands['skill_group']}`",
+        f"- Session dir: `{commands['session_dir']}`",
+        "",
+    ]
+    for game in commands["games"]:
+        lines.extend([
+            f"## {game['game_id']}",
+            "",
+            f"- Bot faced: `{game['bot_faced']}` ({game['bot_role']})",
+            f"- Seed: `{game['seed']}`",
+            f"- Human color: `{game['human_color']}`",
+            f"- Bot color: `{game['bot_color']}`",
+            f"- Operator action: {game['recommended_operator_action']}",
+            f"- Result file: `{game['expected_result_file']}`",
+            f"- Survey file: `{game['expected_survey_file']}`",
+            "",
+            "Completion checklist:",
+        ])
+        lines.extend(f"- [ ] {item}" for item in game["completion_checklist"])
+        lines.append("")
+    lines.extend([
+        "## Finalize",
+        "",
+        f"Run after all games: `{commands['games'][0]['finalize_command_after_all_games']}`",
+        "",
+    ])
+    return "\n".join(lines)
 
 
 def read_json(path: str | Path) -> dict[str, Any]:

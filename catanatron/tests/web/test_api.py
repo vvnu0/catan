@@ -73,6 +73,21 @@ def test_post_game_endpoint_accepts_custom_config(client):
     assert len(land_tiles) == 7
 
 
+def test_player_factory_supports_custom_catan_ai_bots():
+    pytest.importorskip("catan_ai")
+
+    from catanatron.models.player import Color
+    from catanatron.web.api import player_factory
+
+    main = player_factory(("MAIN_BOT", Color.RED))
+    reference = player_factory(("REFERENCE_BOT", Color.BLUE))
+
+    assert main.color == Color.RED
+    assert reference.color == Color.BLUE
+    assert main.is_bot is True
+    assert reference.is_bot is True
+
+
 def test_post_game_endpoint_rejects_invalid_config(client):
     response = client.post(
         "/api/games",

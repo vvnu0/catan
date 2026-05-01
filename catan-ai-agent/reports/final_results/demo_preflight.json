@@ -1,0 +1,92 @@
+{
+  "ok": true,
+  "strict": true,
+  "required_failures": [],
+  "checks": [
+    {
+      "name": "import:catanatron",
+      "required": true,
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "import:catan_ai.players.mcts_player",
+      "required": true,
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "import:catan_ai.players.belief_mcts_player",
+      "required": true,
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "import:catan_ai.eval.human_eval",
+      "required": true,
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "path:reports/final_results/final_summary.json",
+      "required": true,
+      "ok": true,
+      "detail": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\reports\\final_results\\final_summary.json"
+    },
+    {
+      "name": "path:reports/final_results/FINAL_RESULTS.md",
+      "required": true,
+      "ok": true,
+      "detail": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\reports\\final_results\\FINAL_RESULTS.md"
+    },
+    {
+      "name": "path:experiments/opponent_modeling_sweep/medium/aggregate_summary.json",
+      "required": true,
+      "ok": true,
+      "detail": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\experiments\\opponent_modeling_sweep\\medium\\aggregate_summary.json"
+    },
+    {
+      "name": "path:experiments/neural_scaling_study/medium/aggregate_summary.json",
+      "required": true,
+      "ok": true,
+      "detail": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\experiments\\neural_scaling_study\\medium\\aggregate_summary.json"
+    },
+    {
+      "name": "path:configs/human_eval/default.yaml",
+      "required": true,
+      "ok": true,
+      "detail": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\configs\\human_eval\\default.yaml"
+    },
+    {
+      "name": "path:experiments/human_eval/aggregate_summary.json",
+      "required": false,
+      "ok": true,
+      "detail": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\experiments\\human_eval\\aggregate_summary.json"
+    },
+    {
+      "name": "path:reports/final_results/SUBMISSION_CHECKLIST.md",
+      "required": false,
+      "ok": true,
+      "detail": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\reports\\final_results\\SUBMISSION_CHECKLIST.md"
+    },
+    {
+      "name": "bot_instantiation",
+      "required": true,
+      "ok": true,
+      "detail": "frequency and mcts instantiate"
+    },
+    {
+      "name": "catanatron_cli",
+      "required": false,
+      "ok": false,
+      "detail": "not found on PATH; manual/demo scripts can still use Python APIs"
+    },
+    {
+      "name": "docker_cli",
+      "required": false,
+      "ok": true,
+      "detail": "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.EXE"
+    }
+  ],
+  "artifact_path": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\reports\\final_results\\demo_preflight.json"
+}

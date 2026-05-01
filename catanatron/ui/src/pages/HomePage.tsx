@@ -28,6 +28,8 @@ const PLAYER_ARCHETYPES: Array<{
   { value: "RANDOM", label: "Random" },
   { value: "CATANATRON", label: "Catanatron" },
   { value: "WEIGHTED_RANDOM", label: "Weighted Random" },
+  { value: "MAIN_BOT", label: "Main Bot (Frequency MCTS)" },
+  { value: "REFERENCE_BOT", label: "Reference Bot (Plain MCTS)" },
 ];
 
 const MAP_TEMPLATES: MapTemplate[] = ["BASE", "MINI", "TOURNAMENT"];

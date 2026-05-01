@@ -1,0 +1,5 @@
+{
+  "status": "dry_run",
+  "manifest_path": "experiments\\visual_matches\\visual_20260429_111704\\visual_match_manifest.json",
+  "instructions": "Start Catanatron web DB/server/UI, then rerun without --dry-run."
+}
