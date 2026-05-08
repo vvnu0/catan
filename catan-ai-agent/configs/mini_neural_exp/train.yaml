@@ -3,10 +3,10 @@ checkpoint_dir: experiments/mini_neural_exp/checkpoints
 batch_size: 64
 lr: 0.001
 weight_decay: 0.0001
-epochs: 3
+epochs: 10
 validation_split: 0.1
-value_loss_weight: 1.0
+value_loss_weight: .25
 patience: 3
 overfit_batches: 0
 hidden_dim: 64
-dropout: 0.0
+dropout: 0.1
