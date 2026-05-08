@@ -114,7 +114,7 @@ class _RecordingMCTSPlayer(Player):
             target_policy = [1.0 / n] * n
 
         s_feats = state_features(ps)
-        a_feats = [action_features(ea) for ea in root_ctx.encoded_actions]
+        a_feats = [action_features(ea, ps) for ea in root_ctx.encoded_actions]
         ea_strs = [ActionCodec.decode_to_str(ea) for ea in root_ctx.encoded_actions]
 
         sample = DecisionSample(

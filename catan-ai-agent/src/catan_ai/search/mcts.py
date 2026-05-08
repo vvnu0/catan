@@ -126,7 +126,12 @@ class MCTS:
                 if ea is not None:
                     child_game = node.game.copy()
                     raw_action = node.context.get_raw_action(ea)
-                    child_game.execute(raw_action)
+                    try:
+                        child_game.execute(raw_action)
+                    except (ValueError, Exception):
+                        # Action may be illegal in determinized/copied state
+                        # (e.g. bank out of cards). Skip it.
+                        continue
 
                     child = TreeNode(
                         child_game,

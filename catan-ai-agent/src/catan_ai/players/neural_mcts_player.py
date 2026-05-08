@@ -29,7 +29,7 @@ from catanatron.models.player import Color, Player
 
 from catan_ai.adapters.action_codec import ActionCodec
 from catan_ai.adapters.public_state import EncodedAction
-from catan_ai.models.action_features import action_features, state_features
+from catan_ai.models.action_features import ACTION_DIM, action_features, state_features
 from catan_ai.models.policy_value_net import PolicyValueNet
 from catan_ai.players.decision_context import DecisionContext
 from catan_ai.search.candidate_filter import CandidateFilter
@@ -54,7 +54,7 @@ class NeuralMCTSConfig:
 
     use_model_priors: bool = True
     use_model_value: bool = True
-    heuristic_value_weight: float = 0.0
+    heuristic_value_weight: float = 0.5
 
 
 class NeuralMCTS:
@@ -131,7 +131,12 @@ class NeuralMCTS:
                 if ea is not None:
                     child_game = node.game.copy()
                     raw_action = node.context.get_raw_action(ea)
-                    child_game.execute(raw_action)
+                    try:
+                        child_game.execute(raw_action)
+                    except (ValueError, Exception):
+                        # Action may be illegal in determinized/copied state
+                        # (e.g. bank out of cards). Skip it.
+                        continue
 
                     child = TreeNode(
                         child_game,
@@ -244,7 +249,7 @@ class NeuralMCTS:
             return
 
         s_feats = torch.tensor([state_features(ps)], dtype=torch.float32)
-        a_feats_list = [action_features(ea) for ea in eas]
+        a_feats_list = [action_features(ea, ps) for ea in eas]
         a_feats = torch.tensor([a_feats_list], dtype=torch.float32)
         mask = torch.ones(1, len(eas), dtype=torch.bool)
 
@@ -287,7 +292,7 @@ class NeuralMCTS:
             ps = node.context.public_state
             eas = node.context.encoded_actions
             s_feats = torch.tensor([state_features(ps)], dtype=torch.float32)
-            a_feats_list = [action_features(ea) for ea in eas] if eas else [[0.0] * 19]
+            a_feats_list = [action_features(ea, ps) for ea in eas] if eas else [[0.0] * ACTION_DIM]
             a_feats = torch.tensor([a_feats_list], dtype=torch.float32)
             mask = torch.ones(1, len(a_feats_list), dtype=torch.bool)
 

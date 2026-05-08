@@ -42,13 +42,13 @@ class TrainConfig:
     weight_decay: float = 1e-4
     epochs: int = 20
     validation_split: float = 0.1
-    value_loss_weight: float = 1.0
+    value_loss_weight: float = 0.25
     patience: int = 5
     overfit_batches: int = 0
 
     # Model architecture
     hidden_dim: int = 64
-    dropout: float = 0.0
+    dropout: float = 0.1
 
 
 def train(cfg: TrainConfig) -> Path:

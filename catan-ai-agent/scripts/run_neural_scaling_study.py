@@ -475,7 +475,7 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run neural scaling study")
-    parser.add_argument("--preset", choices=("small", "medium", "large"), default="small")
+    parser.add_argument("--preset", choices=("small", "medium", "large", "v2_test"), default="small")
     parser.add_argument("--output-dir", default=None)
     parser.add_argument("--seeds", default=None, help="Comma-separated explicit seeds")
     parser.add_argument("--reuse-existing", action="store_true")

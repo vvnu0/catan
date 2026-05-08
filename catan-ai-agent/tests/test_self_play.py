@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 import torch
 
+from catan_ai.models.action_features import ACTION_DIM
 from catan_ai.training.self_play import SelfPlayConfig, run_self_play
 
 
@@ -53,7 +54,7 @@ class TestSelfPlay:
 
         a = sample["action_feats"]
         assert a.ndim == 2
-        assert a.shape[1] == 19
+        assert a.shape[1] == ACTION_DIM
 
         p = sample["target_policy"]
         assert p.shape[0] == a.shape[0]
