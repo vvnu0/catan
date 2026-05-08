@@ -1,7 +1,0 @@
-{
-  "status": "dry_run",
-  "manifest_path": "experiments\\demo_runs\\demo_20260429_003532\\demo_manifest.json",
-  "summary_path": "experiments\\demo_runs\\demo_20260429_003532\\demo_summary.md",
-  "planned_matchup": "main_vs_reference",
-  "planned_games": 2
-}

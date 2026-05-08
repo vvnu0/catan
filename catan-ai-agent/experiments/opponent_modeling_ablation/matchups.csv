@@ -1,4 +1,0 @@
-label,candidate_mode,baseline_mode,games,wins,losses,draws,win_rate,avg_final_vp,avg_turns,mean_latency_ms,seeds,swap_seats,total_simulations,max_depth,particle_worlds
-frequency vs none,frequency,none,2,1,1,0,0.5,8,231,3.110199508540365,7000,True,12,8,3
-particle vs none,particle,none,2,0,2,0,0.0,3,459.5,3.310492065799438,7000,True,12,8,3
-particle vs frequency,particle,frequency,2,0,2,0,0.0,3.5,526.5,3.8644127714349894,7000,True,12,8,3

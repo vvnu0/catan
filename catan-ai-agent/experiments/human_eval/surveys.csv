@@ -1,3 +1,0 @@
-bot_faced,challenge_level,comments,final_vp,game_id,gameplay_felt_fair,moves_felt_sensible,participant_id,seed,skill_group,turns,winner
-frequency,4,dry-run response,7,P_DRYRUN_game_01,4,4,P_DRYRUN,9100,B,120,bot
-mcts,3,dry-run response,10,P_DRYRUN_game_02,4,3,P_DRYRUN,9101,B,127,human

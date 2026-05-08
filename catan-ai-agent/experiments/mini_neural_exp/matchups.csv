@@ -1,4 +1,0 @@
-label,games,wins,losses,draws,win_rate,avg_final_vp,avg_turns,mean_latency_ms,base_seed,search_seed,swap_seats,max_simulations,max_depth
-MCTS vs MCTS sanity,4,2,2,0,0.5,7.5,188.75,7.525941865217584,9000,2026,True,20,8
-NeuralMCTS checkpoint vs MCTS,4,2,2,0,0.5,7.5,214.25,12.099539705564698,9000,2026,True,20,8
-NeuralMCTS checkpoint vs HeuristicBot,4,1,3,0,0.25,4.75,136,11.72604020518872,9000,2026,True,20,8
