@@ -1,20 +1,22 @@
 {
   "experiment_name": "mini_neural_exp",
-  "elapsed_sec": 59.15361249999842,
+  "elapsed_sec": 37.79849870793987,
   "self_play_games": 4,
   "self_play_samples": 796,
   "self_play_shards": [
-    "experiments\\mini_neural_exp\\data\\self_play\\shard_0000.pt",
-    "experiments\\mini_neural_exp\\data\\self_play\\shard_0001.pt"
+    "experiments/v2_spatial_mini/data/self_play/shard_0000.pt",
+    "experiments/v2_spatial_mini/data/self_play/shard_0001.pt"
   ],
-  "train_epochs": 3,
-  "checkpoint_epoch": 1,
+  "train_epochs": 10,
+  "checkpoint_epoch": 8,
   "checkpoint_metrics": {
-    "val_policy": 2.128309726715088,
-    "val_value": 1.547645628452301,
-    "val_total": 3.675955355167389
+    "train_policy": 1.8259480893611908,
+    "train_value": 0.3682219311594963,
+    "val_policy": 1.7888312339782715,
+    "val_value": 0.8278700709342957,
+    "val_total": 1.9957987517118454
   },
-  "checkpoint_path": "experiments\\mini_neural_exp\\checkpoints\\best.pt",
+  "checkpoint_path": "experiments/v2_spatial_mini/checkpoints/best.pt",
   "eval_matchups": [
     {
       "label": "MCTS vs MCTS sanity",
@@ -25,7 +27,7 @@
       "win_rate": 0.5,
       "avg_final_vp": 7.5,
       "avg_turns": 188.75,
-      "mean_latency_ms": 7.525941865217584,
+      "mean_latency_ms": 4.42460745183873,
       "seed_info": {
         "base_seed": 9000,
         "search_seed": 2026,
@@ -42,13 +44,13 @@
     {
       "label": "NeuralMCTS checkpoint vs MCTS",
       "games": 4,
-      "wins": 2,
-      "losses": 2,
+      "wins": 3,
+      "losses": 1,
       "draws": 0,
-      "win_rate": 0.5,
+      "win_rate": 0.75,
       "avg_final_vp": 7.5,
-      "avg_turns": 214.25,
-      "mean_latency_ms": 12.099539705564698,
+      "avg_turns": 123.5,
+      "mean_latency_ms": 6.765512645428279,
       "seed_info": {
         "base_seed": 9000,
         "search_seed": 2026,
@@ -66,12 +68,12 @@
       "label": "NeuralMCTS checkpoint vs HeuristicBot",
       "games": 4,
       "wins": 1,
-      "losses": 3,
-      "draws": 0,
+      "losses": 2,
+      "draws": 1,
       "win_rate": 0.25,
-      "avg_final_vp": 4.75,
-      "avg_turns": 136,
-      "mean_latency_ms": 11.72604020518872,
+      "avg_final_vp": 3.75,
+      "avg_turns": 356,
+      "mean_latency_ms": 6.531607643223,
       "seed_info": {
         "base_seed": 9000,
         "search_seed": 2026,
@@ -87,16 +89,16 @@
     }
   ],
   "artifact_paths": {
-    "dataset_dir": "experiments\\mini_neural_exp\\data\\self_play",
-    "checkpoint_path": "experiments\\mini_neural_exp\\checkpoints\\best.pt",
-    "summary_path": "reports\\mini_neural_experiment_summary.json",
-    "experiment_summary_path": "experiments\\mini_neural_exp\\summary.json",
-    "csv_path": "experiments\\mini_neural_exp\\matchups.csv"
+    "dataset_dir": "experiments/v2_spatial_mini/data/self_play",
+    "checkpoint_path": "experiments/v2_spatial_mini/checkpoints/best.pt",
+    "summary_path": "reports/mini_neural_experiment_summary.json",
+    "experiment_summary_path": "experiments/v2_spatial_mini/summary.json",
+    "csv_path": "experiments/v2_spatial_mini/matchups.csv"
   },
   "configs": {
     "self_play": {
       "num_games": 4,
-      "output_dir": "experiments/mini_neural_exp/data/self_play",
+      "output_dir": "/Users/danweizuo/Documents/CS-4701/catan/catan-ai-agent/experiments/v2_spatial_mini/data/self_play",
       "seed": 4242,
       "teacher_type": "mcts",
       "max_simulations": 20,
@@ -108,24 +110,24 @@
       "shard_size": 512
     },
     "train": {
-      "data_dir": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\experiments\\mini_neural_exp\\data\\self_play",
-      "checkpoint_dir": "C:\\Users\\nairv\\Downloads\\classes\\catan\\catan-ai-agent\\experiments\\mini_neural_exp\\checkpoints",
+      "data_dir": "/Users/danweizuo/Documents/CS-4701/catan/catan-ai-agent/experiments/v2_spatial_mini/data/self_play",
+      "checkpoint_dir": "/Users/danweizuo/Documents/CS-4701/catan/catan-ai-agent/experiments/v2_spatial_mini/checkpoints",
       "batch_size": 64,
       "lr": 0.001,
       "weight_decay": 0.0001,
-      "epochs": 3,
+      "epochs": 10,
       "validation_split": 0.1,
-      "value_loss_weight": 1.0,
+      "value_loss_weight": 0.25,
       "patience": 3,
       "overfit_batches": 0,
       "hidden_dim": 64,
-      "dropout": 0.0
+      "dropout": 0.1
     },
     "eval": {
       "experiment_name": "mini_neural_exp",
-      "output_dir": "experiments/mini_neural_exp",
+      "output_dir": "experiments/v2_spatial_mini",
       "summary_path": "reports/mini_neural_experiment_summary.json",
-      "csv_path": "experiments/mini_neural_exp/matchups.csv",
+      "csv_path": "/Users/danweizuo/Documents/CS-4701/catan/catan-ai-agent/experiments/v2_spatial_mini/matchups.csv",
       "num_games": 2,
       "base_seed": 9000,
       "swap_seats": true,
