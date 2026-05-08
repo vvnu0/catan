@@ -45,7 +45,7 @@ class NeuralMCTSConfig:
 
     max_simulations: int = 50
     max_depth: int = 10
-    puct_c: float = 2.5
+    puct_c: float = 1.5
     top_k_roads: int = 3
     top_k_trades: int = 2
     top_k_robber: int = 4
@@ -54,7 +54,7 @@ class NeuralMCTSConfig:
 
     use_model_priors: bool = True
     use_model_value: bool = True
-    heuristic_value_weight: float = 0.5
+    heuristic_value_weight: float = 0.1
 
 
 class NeuralMCTS:
