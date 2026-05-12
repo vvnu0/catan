@@ -116,12 +116,16 @@ class HeuristicBot(Player):
     def __init__(self, color, is_bot=True):
         super().__init__(color, is_bot=is_bot)
         self._calls = 0
+        self._total_decide_ms = 0.0
 
     # -----------------------------------------------------------------
     # Catanatron Player interface
     # -----------------------------------------------------------------
     def decide(self, game, playable_actions):
         self._calls += 1
+        import time as _time
+        t0 = _time.perf_counter()
+
         ctx = DecisionContext(game, playable_actions, self.color)
         ps = ctx.public_state
 
@@ -152,10 +156,16 @@ class HeuristicBot(Player):
                 best_rule,
             )
 
+        self._total_decide_ms += (_time.perf_counter() - t0) * 1000
         return ctx.get_raw_action(best_ea)
 
     def reset_state(self):
         self._calls = 0
+        self._total_decide_ms = 0.0
+
+    @property
+    def avg_move_ms(self) -> float:
+        return self._total_decide_ms / self._calls if self._calls > 0 else 0.0
 
     # -----------------------------------------------------------------
     # Top-level dispatcher — returns (score, rule_name)
