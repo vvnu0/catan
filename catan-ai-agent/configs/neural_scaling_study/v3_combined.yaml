@@ -1,6 +1,6 @@
 preset: v3_combined
 output_dir: experiments/neural_scaling_study/v3_combined
-seeds: [8300, 8301, 8302]
+seeds: [8400, 8401, 8402]
 belief_mode: frequency
 self_play_games: 30
 self_play_sims: 30
@@ -10,7 +10,7 @@ train_epochs: 20
 batch_size: 64
 learning_rate: 0.001
 hidden_dim: 64
-eval_games: 20
+eval_games: 100
 eval_sims: 30
 eval_depth: 8
 search_seed: 2026
